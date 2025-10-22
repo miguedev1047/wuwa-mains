@@ -1,5 +1,5 @@
 import { getUser } from "@/functions/get-user";
-import { useTRPC } from "@/utils/trpc";
+import { useTRPC } from "@/trpc/root";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
