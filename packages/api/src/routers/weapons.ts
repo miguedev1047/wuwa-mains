@@ -1,6 +1,6 @@
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure, publicProcedure } from "../index";
-import { weapons } from "@wuwa-mains/db/schemas/weapon-schema";
+import { weapons } from "@wuwa-mains/db/schema/weapon-schema";
 import { weaponSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
 import { idSchema } from "@wuwa-mains/schemas/zod/id-schema";
 import { eq } from "drizzle-orm";

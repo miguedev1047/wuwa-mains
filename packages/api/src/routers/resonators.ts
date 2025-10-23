@@ -1,7 +1,7 @@
 import {
   resonators,
   combatStyles,
-} from "@wuwa-mains/db/schemas/resonator-schema";
+} from "@wuwa-mains/db/schema/resonator-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure, publicProcedure } from "../index";
 import { resonatorSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
