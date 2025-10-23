@@ -13,7 +13,7 @@ export const appRouter = router({
     };
   }),
   resonators: resonatorsRouter,
-  weapon: weaponsRouter,
+  weapons: weaponsRouter,
 });
 
 export type AppRouter = typeof appRouter;
