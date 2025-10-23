@@ -1,0 +1,108 @@
+import {
+  resonatorZodSchema,
+  type ResonatorZodSchema,
+} from "@wuwa-mains/schemas/zod/resonator-schema";
+import { type ResonatorFormProps } from "@/routes/_protected/panel/resonators/-types";
+import { getDefaultResonatorValues } from "@/lib/defaut-values";
+import { useAppForm } from "@/hooks/use-form";
+import { useTRPC } from "@/trpc/root";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
+import { useId, useState } from "react";
+import { toast } from "sonner";
+
+export function useResonatorForm(props: ResonatorFormProps) {
+  const { data, resonatorId } = props;
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const id = useId();
+  const formId = `form-${id}`;
+
+  const isEditing = !!data;
+
+  const trpc = useTRPC();
+  const queryClient = useQueryClient();
+
+  const navigate = useNavigate();
+
+  const DEFAULT_VALUES: ResonatorZodSchema = getDefaultResonatorValues(data);
+
+  const addResonatorMutationOpts = trpc.resonators.add.mutationOptions({
+    onSuccess: (ctx) => {
+      const { message } = ctx;
+      toast.success(message);
+    },
+    onError: (ctx) => {
+      const { message } = ctx;
+      toast.error(message);
+    },
+    onSettled: () => {
+      invalidateQueryAddResonators();
+      navigate({ to: "/panel/resonators" });
+    },
+  });
+  const addResonatorMutation = useMutation(addResonatorMutationOpts);
+
+  const addResonatorsQueryKey = trpc.resonators.get.queryKey();
+  const invalidateQueryAddResonators = () => {
+    queryClient.invalidateQueries({ queryKey: addResonatorsQueryKey });
+  };
+
+  const updateResonatorMutationOpts = trpc.resonators.update.mutationOptions({
+    onSuccess: (ctx) => {
+      const { message } = ctx;
+      toast.success(message);
+    },
+    onError: (ctx) => {
+      const { message } = ctx;
+      toast.error(message);
+    },
+    onSettled: () => {
+      invalidateQueryUpdateResonators();
+      setDialogOpen(false);
+    },
+  });
+  const updateResonatorMutation = useMutation(updateResonatorMutationOpts);
+
+  const updateResonatorsQueryKey = trpc.resonators.unique.queryKey({
+    id: resonatorId,
+  });
+  const invalidateQueryUpdateResonators = () => {
+    queryClient.invalidateQueries({ queryKey: updateResonatorsQueryKey });
+  };
+
+  const form = useAppForm({
+    defaultValues: DEFAULT_VALUES,
+    validators: { onSubmit: resonatorZodSchema },
+    onSubmit: async ({ value }) => {
+      if (isEditing) {
+        if (!resonatorId) {
+          toast.error("Este resonador no tiene ID definido.");
+          return;
+        }
+
+        await updateResonatorMutation.mutateAsync({
+          id: resonatorId,
+          ...value,
+        });
+        return;
+      }
+
+      await addResonatorMutation.mutateAsync(value);
+    },
+  });
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    form.handleSubmit();
+  };
+
+  return {
+    form,
+    formId,
+    isEditing,
+    onSubmit,
+    dialogOpen,
+    setDialogOpen,
+  };
+}
