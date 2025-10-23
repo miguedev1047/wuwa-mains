@@ -1,0 +1,55 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ResonatorActions } from "@/routes/_protected/panel/resonators/-components";
+import { Link } from "@tanstack/react-router";
+import { ElementIcon } from "@/components/icons-ui/element-icon";
+import { getStarsLineColor } from "@/utils/get-colors";
+import { cn } from "@/lib/utils";
+import { type ResonatorDatabaseSchema } from "@/routes/_protected/panel/resonators/-types";
+
+export function ResonatorItem(data: ResonatorDatabaseSchema) {
+  const { avatar_image, stars, element_type, id } = data;
+
+  const starsColor = getStarsLineColor(stars);
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div
+          className={cn(
+            "relative z-10",
+            "relative aspect-square bg-card border shadow-sm rounded-(--radius)",
+          )}
+        >
+          <Link
+            to={`/panel/resonators/$id`}
+            params={{ id }}
+            className={cn(
+              "after:absolute after:inset-x-0 after:bottom-0 after:h-1",
+              starsColor,
+            )}
+          >
+            <figure className="pointer-events-none select-none size-full">
+              <img
+                loading="lazy"
+                className="object-cover size-full "
+                src={avatar_image}
+              />
+            </figure>
+          </Link>
+          <ElementIcon
+            elementType={element_type}
+            className="size-8 absolute top-1 right-1"
+          />
+          <ResonatorActions {...data} />
+        </div>
+      </TooltipTrigger>
+      <TooltipContent side="bottom">
+        <p>{data.name}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
