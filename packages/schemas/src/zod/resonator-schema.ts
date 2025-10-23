@@ -4,9 +4,9 @@ import {
   WEAPON_TYPE_ENUM,
 } from "@wuwa-mains/constants";
 import { z } from "zod";
-import { optionSchema } from "../zod/option-schema";
+import { optionZodSchema } from "../zod/option-schema";
 
-export const resonatorSchema = z.object({
+export const resonatorZodSchema = z.object({
   name: z
     .string()
     .min(2, { error: "El nombre debe tener al menos 2 caracteres." })
@@ -59,7 +59,7 @@ export const resonatorSchema = z.object({
   is_new: z.boolean().describe("Alterna si el resonador es nuevo."),
 
   combat_styles: z
-    .array(optionSchema)
+    .array(optionZodSchema)
     .min(1, {
       error: "Agrega al menos 1 estilo de combate para este resonador",
     })
@@ -74,4 +74,4 @@ export const resonatorSchema = z.object({
     .describe("Última fecha de actualización en milisegundos."),
 });
 
-export type ResonatorSchema = z.infer<typeof resonatorSchema>;
+export type ResonatorZodSchema = z.infer<typeof resonatorZodSchema>;

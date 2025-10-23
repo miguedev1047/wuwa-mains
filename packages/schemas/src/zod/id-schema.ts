@@ -1,5 +1,5 @@
-import z from 'zod'
+import z from "zod";
 
-export const idSchema = z.object({
-  id: z.string().min(1, 'La id es requerida para realizar esta acción'),
-})
+export const idZodSchema = z.object({
+  id: z.string().min(1, "La id es requerida para realizar esta acción"),
+});

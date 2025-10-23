@@ -5,7 +5,7 @@ import {
 } from "@wuwa-mains/constants";
 import { z } from "zod";
 
-export const weaponSchema = z.object({
+export const weaponZodSchema = z.object({
   name: z
     .string()
     .min(2, { error: "El nombre debe tener al menos 2 caracteres." })
@@ -80,4 +80,4 @@ export const weaponSchema = z.object({
     .describe("Última fecha de actualización en milisegundos."),
 });
 
-export type WeaponSchema = z.infer<typeof weaponSchema>;
+export type WeaponZodSchema = z.infer<typeof weaponZodSchema>;

@@ -4,8 +4,8 @@ import {
 } from "@wuwa-mains/db/schema/resonator-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure, publicProcedure } from "../index";
-import { resonatorSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
-import { idSchema } from "@wuwa-mains/schemas/zod/id-schema";
+import { resonatorZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
+import { idZodSchema } from "@wuwa-mains/schemas/zod/id-schema";
 import { combatStylesTransformOpts } from "../helpers/option-transform";
 import { eq } from "drizzle-orm";
 
@@ -26,7 +26,7 @@ export const resonatorsRouter = {
       });
     }
   }),
-  unique: publicProcedure.input(idSchema).query(async ({ ctx, input }) => {
+  unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
     try {
       const { id } = input;
 
@@ -53,7 +53,7 @@ export const resonatorsRouter = {
     }
   }),
   update: protectedProcedure
-    .input(resonatorSchema.extend(idSchema.shape))
+    .input(resonatorZodSchema.extend(idZodSchema.shape))
     .mutation(async ({ ctx, input }) => {
       try {
         const { combat_styles, id, ...resonatorData } = input;
@@ -102,7 +102,7 @@ export const resonatorsRouter = {
       }
     }),
   add: protectedProcedure
-    .input(resonatorSchema)
+    .input(resonatorZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const { combat_styles, ...resonatorData } = input;
@@ -146,7 +146,7 @@ export const resonatorsRouter = {
       }
     }),
   delete: protectedProcedure
-    .input(idSchema)
+    .input(idZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const { id } = input;

@@ -1,7 +1,7 @@
-import { type Option } from "@wuwa-mains/schemas/zod/option-schema";
+import { type OptionZodSchema } from "@wuwa-mains/schemas/zod/option-schema";
 
 interface combatStylesTransformOptsProps {
-  combatStyles: Option[];
+  combatStyles: OptionZodSchema[];
   resonatorId: string;
 }
 

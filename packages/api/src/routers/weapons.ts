@@ -1,8 +1,8 @@
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure, publicProcedure } from "../index";
 import { weapons } from "@wuwa-mains/db/schema/weapon-schema";
-import { weaponSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
-import { idSchema } from "@wuwa-mains/schemas/zod/id-schema";
+import { weaponZodSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
+import { idZodSchema } from "@wuwa-mains/schemas/zod/id-schema";
 import { eq } from "drizzle-orm";
 
 export const weaponsRouter = {
@@ -19,7 +19,7 @@ export const weaponsRouter = {
       });
     }
   }),
-  unique: publicProcedure.input(idSchema).query(async ({ ctx, input }) => {
+  unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
     try {
       const { id } = input;
 
@@ -45,7 +45,7 @@ export const weaponsRouter = {
     }
   }),
   update: protectedProcedure
-    .input(weaponSchema.extend(idSchema.shape))
+    .input(weaponZodSchema.extend(idZodSchema.shape))
     .mutation(async ({ ctx, input }) => {
       try {
         const { id, ...weaponData } = input;
@@ -78,7 +78,7 @@ export const weaponsRouter = {
       }
     }),
   add: protectedProcedure
-    .input(weaponSchema)
+    .input(weaponZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const { ...resonatorData } = input;
@@ -103,7 +103,7 @@ export const weaponsRouter = {
       }
     }),
   delete: protectedProcedure
-    .input(idSchema)
+    .input(idZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const { id } = input;
