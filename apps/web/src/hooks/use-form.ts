@@ -1,0 +1,63 @@
+import {
+  FormCardRoot,
+  FormCardHeader,
+  FormCardTitle,
+  FormCardContent,
+  FormCardDescription,
+  FormCardFooter,
+  FormCardHandle,
+  FormSheetRoot,
+  FormSheetHeader,
+  FormSheetTitle,
+  FormSheetContent,
+  FormSheetDescription,
+  FormSheetFooter,
+  FormSheetTrigger,
+  FormSheetHandle,
+  TextField,
+  UrlImageField,
+  EditorField,
+  ErrorField,
+  MultiSelectField,
+  NumberField,
+  SelectField,
+  SwitchField,
+  SubmitButton,
+} from '@/components/shared-ui/form'
+import { createFormHook, createFormHookContexts } from '@tanstack/react-form'
+
+export const { fieldContext, formContext, useFieldContext, useFormContext } =
+  createFormHookContexts()
+
+export const { useAppForm } = createFormHook({
+  fieldComponents: {
+    TextField,
+    UrlImageField,
+    EditorField,
+    ErrorField,
+    MultiSelectField,
+    NumberField,
+    SelectField,
+    SwitchField,
+  },
+  formComponents: {
+    FormCardRoot,
+    FormCardContent,
+    FormCardDescription,
+    FormCardFooter,
+    FormCardHandle,
+    FormCardHeader,
+    FormCardTitle,
+    FormSheetRoot,
+    FormSheetHeader,
+    FormSheetTitle,
+    FormSheetContent,
+    FormSheetDescription,
+    FormSheetFooter,
+    FormSheetTrigger,
+    FormSheetHandle,
+    SubmitButton,
+  },
+  fieldContext,
+  formContext,
+})
