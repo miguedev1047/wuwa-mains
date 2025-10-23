@@ -1,5 +1,7 @@
 import type { AppRouter } from "@wuwa-mains/api/routers/index";
 
+import superjson from "superjson";
+
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { createTRPCClient, httpBatchLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
@@ -22,7 +24,7 @@ export const queryClient = new QueryClient({
 });
 
 export const trpcClient = createTRPCClient<AppRouter>({
-  links: [httpBatchLink({ url: "/api/trpc" })],
+  links: [httpBatchLink({ url: "/api/trpc", transformer: superjson })],
 });
 
 export const trpc = createTRPCOptionsProxy({
