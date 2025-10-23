@@ -34,6 +34,7 @@ import { ThemeSwitcher } from "@/components/kibo-ui/theme-switcher";
 import { Suspense, Fragment } from "react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import { useIsMounted } from "@/hooks/use-is-mounted";
 
 export function PanelSidebarSkeletons() {
   const MAP_SKELETONS = [...Array(8)].map((_, index) => (
@@ -127,12 +128,12 @@ export function PanelSidebarContentRoutes() {
 }
 
 export function PanelSidebarProfile() {
-  const isMobile = useIsMobile();
-
   const { user } = useRouteContext({ from: "/_protected" });
-  if (!user) return <Skeleton className="w-full h-8" />;
-
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
+  useIsMounted();
+
+  if (!user) return <Skeleton className="w-full h-8" />;
 
   const handleSignout = async () => {
     await authClient.signOut({
@@ -214,7 +215,7 @@ export function PanelSidebarApp() {
         </Suspense>
       </SidebarContent>
       <SidebarFooter>
-        <Suspense fallback={<Skeleton className="w-full h-9" />}>
+        <Suspense fallback={<Skeleton className="w-full h-10" />}>
           <PanelSidebarProfile />
         </Suspense>
       </SidebarFooter>
