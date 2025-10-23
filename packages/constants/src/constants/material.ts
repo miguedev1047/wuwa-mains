@@ -13,7 +13,7 @@ export const SELECT_MATERIAL_TYPE = [
     label: "Material de mejora de arma y habilidad",
     value: "weapon_and_skill_material",
   },
-  { label: "Material de desarrollo de eco", value: "echo_dev_material" },
+  { label: "Material de mejora de eco", value: "echo_dev_material" },
   { label: "Material de ascensión", value: "ascension_material" },
   { label: "No seleccionado", value: "none" },
 ];
