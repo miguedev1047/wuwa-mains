@@ -44,7 +44,7 @@ export const SELECT_WEAPON_MAIN_STATS = [
     value: "defense",
   },
   {
-    label: "Recarga de energía Porcentual",
+    label: "Recarga de energía",
     value: "energy_recharge",
   },
   {
