@@ -22,9 +22,18 @@ export const materialsRouter = {
   unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
     try {
       const { id } = input;
+
       const material = await ctx.db.query.materials.findFirst({
         where: eq(materials.id, id),
       });
+
+      if (!material) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Material no encontrado.",
+        });
+      }
+
       return material;
     } catch (error) {
       console.error("Error getting material:", error);
