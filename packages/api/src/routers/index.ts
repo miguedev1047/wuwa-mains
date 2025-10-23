@@ -1,4 +1,5 @@
 import { protectedProcedure, publicProcedure, router } from "../index";
+import { materialsRouter } from "./materials";
 import { resonatorsRouter } from "./resonators";
 import { weaponsRouter } from "./weapons";
 
@@ -14,6 +15,7 @@ export const appRouter = router({
   }),
   resonators: resonatorsRouter,
   weapons: weaponsRouter,
+  materials: materialsRouter,
 });
 
 export type AppRouter = typeof appRouter;
