@@ -57,6 +57,7 @@
         "@wuwa-mains/api": "workspace:*",
         "@wuwa-mains/auth": "workspace:*",
         "@wuwa-mains/constants": "workspace:*",
+        "@wuwa-mains/schemas": "workspace:*",
         "babel-plugin-react-compiler": "^1.0.0",
         "better-auth": "catalog:",
         "class-variance-authority": "^0.7.1",
