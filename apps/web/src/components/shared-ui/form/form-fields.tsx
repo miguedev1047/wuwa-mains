@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { InputUrlImage } from "@/components/ui/input-url-image";
 import { MultipleSelector } from "@/components/ui/multiselect";
-import { type Option } from "@wuwa-mains/schemas/zod/option-schema";
+import { type OptionZodSchema } from "@wuwa-mains/schemas/zod/option-schema";
 
 interface TextFieldProps {
   label: string;
@@ -189,7 +189,7 @@ interface MultiSelectFieldProps {
   label: string;
   description: string;
   showError?: boolean;
-  items?: Option[];
+  items?: OptionZodSchema[];
   placeholder?: string;
   notFound?: string;
   multiSelectProps?: React.ComponentProps<typeof MultipleSelector>;
@@ -205,7 +205,7 @@ export function MultiSelectField({
   multiSelectProps,
 }: MultiSelectFieldProps) {
   const id = useId();
-  const field = useFieldContext<Option[]>();
+  const field = useFieldContext<OptionZodSchema[]>();
   return (
     <Field>
       <FieldLabel htmlFor={`MULTI-SELECT-${id}`}>{label}</FieldLabel>

@@ -6,14 +6,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { InputSkeleton } from "@/components/state-ui/skeletons";
-import { type Option } from "@wuwa-mains/schemas/zod/option-schema";
+import { type OptionZodSchema } from "@wuwa-mains/schemas/zod/option-schema";
 import { Suspense } from "react";
 import { cn } from "@/lib/utils";
 import { useQueryState } from "nuqs";
 import { useDebouncedCallback } from "use-debounce";
 
 interface SelectQueryProps extends React.ComponentProps<typeof Select> {
-  items: Option[];
+  items: OptionZodSchema[];
   queryParam: string;
   placeholder?: string;
   className?: string;
