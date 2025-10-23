@@ -1,12 +1,8 @@
-import dotenv from "dotenv";
-
 import { reactStartCookies } from "better-auth/react-start";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@wuwa-mains/db";
 import * as schema from "@wuwa-mains/db/schema/auth";
-
-dotenv.config({ path: "../../apps/web/.env" });
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
