@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../../apps/web/.env" });
 
 export default defineConfig({
-  schema: "./src/schemas",
+  schema: "./src/schema",
   out: "./src/migrations",
   dialect: "turso",
   dbCredentials: {

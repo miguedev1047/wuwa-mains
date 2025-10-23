@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 
-dotenv.config({ path: "../../apps/web/.env" });
+dotenv.config({ path: "../../../apps/web/.env" });
 
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import * as schema from "./schemas/root";
+import * as schema from "./root";
 
 const client = createClient({
   url: process.env.DATABASE_URL || "",
