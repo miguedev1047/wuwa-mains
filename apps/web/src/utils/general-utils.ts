@@ -2,6 +2,7 @@ import {
   SELECT_WEAPON_MAIN_STATS,
   SELECT_WEAPON_TYPE,
   SELECT_ELEMENT_TYPE,
+  SELECT_MATERIAL_TYPE,
 } from "@wuwa-mains/constants";
 
 const UNDEFINED_OPTS = { label: "No definido", value: "undefined" };
@@ -28,4 +29,12 @@ export function getMainStat(mainStat: string) {
   );
   if (!MAIN_STAT) return UNDEFINED_OPTS;
   return MAIN_STAT;
+}
+
+export function getMaterialType(materialType: string) {
+  const MATERIAL_TYPE = SELECT_MATERIAL_TYPE.find(
+    (type) => type.value === materialType,
+  );
+  if (!MATERIAL_TYPE) return UNDEFINED_OPTS;
+  return MATERIAL_TYPE;
 }
