@@ -18,7 +18,7 @@ export const SELECT_MATERIAL_TYPE = [
   { label: "No seleccionado", value: "none" },
 ];
 
-export const MATERIAL_TYPE = [
+export const MATERIAL_TYPE_ENUM = [
   "exp",
   "resonator_ascension_material",
   "skill_upgrade_material",

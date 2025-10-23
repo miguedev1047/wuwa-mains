@@ -93,7 +93,9 @@ export function PanelSidebarHeader() {
 }
 
 export function PanelSidebarContentRoutes() {
-  const { role = "USER" } = useRouteContext({ from: "/_protected" });
+  const { role } = useRouteContext({ from: "/_protected" });
+
+  if (!role) return <PanelSidebarSkeletons />;
 
   const filteredRoutes = PANEL_ROUTES.navMain.filter((route) =>
     route.roles.includes(role!),
