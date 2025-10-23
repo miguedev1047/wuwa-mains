@@ -9,26 +9,49 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ProtectedRouteRouteImport } from './routes/_protected/route'
+import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TestIndexRouteImport } from './routes/test/index'
+import { Route as ProtectedPanelRouteRouteImport } from './routes/_protected/panel/route'
+import { Route as AuthedLoginIndexRouteImport } from './routes/_authed/login/index'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ProtectedPanelWeaponsIndexRouteImport } from './routes/_protected/panel/weapons/index'
+import { Route as ProtectedPanelResonatorsIndexRouteImport } from './routes/_protected/panel/resonators/index'
+import { Route as ProtectedPanelHomeIndexRouteImport } from './routes/_protected/panel/home/index'
+import { Route as ProtectedPanelWeaponsNewIndexRouteImport } from './routes/_protected/panel/weapons/new/index'
+import { Route as ProtectedPanelWeaponsIdIndexRouteImport } from './routes/_protected/panel/weapons/$id/index'
+import { Route as ProtectedPanelResonatorsNewIndexRouteImport } from './routes/_protected/panel/resonators/new/index'
+import { Route as ProtectedPanelResonatorsIdIndexRouteImport } from './routes/_protected/panel/resonators/$id/index'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const ProtectedRouteRoute = ProtectedRouteRouteImport.update({
+  id: '/_protected',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthedRouteRoute = AuthedRouteRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TestIndexRoute = TestIndexRouteImport.update({
+  id: '/test/',
+  path: '/test/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedPanelRouteRoute = ProtectedPanelRouteRouteImport.update({
+  id: '/panel',
+  path: '/panel',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+const AuthedLoginIndexRoute = AuthedLoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => AuthedRouteRoute,
 } as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
   id: '/api/trpc/$',
@@ -40,59 +63,169 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedPanelWeaponsIndexRoute =
+  ProtectedPanelWeaponsIndexRouteImport.update({
+    id: '/weapons/',
+    path: '/weapons/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
+const ProtectedPanelResonatorsIndexRoute =
+  ProtectedPanelResonatorsIndexRouteImport.update({
+    id: '/resonators/',
+    path: '/resonators/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
+const ProtectedPanelHomeIndexRoute = ProtectedPanelHomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => ProtectedPanelRouteRoute,
+} as any)
+const ProtectedPanelWeaponsNewIndexRoute =
+  ProtectedPanelWeaponsNewIndexRouteImport.update({
+    id: '/weapons/new/',
+    path: '/weapons/new/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
+const ProtectedPanelWeaponsIdIndexRoute =
+  ProtectedPanelWeaponsIdIndexRouteImport.update({
+    id: '/weapons/$id/',
+    path: '/weapons/$id/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
+const ProtectedPanelResonatorsNewIndexRoute =
+  ProtectedPanelResonatorsNewIndexRouteImport.update({
+    id: '/resonators/new/',
+    path: '/resonators/new/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
+const ProtectedPanelResonatorsIdIndexRoute =
+  ProtectedPanelResonatorsIdIndexRouteImport.update({
+    id: '/resonators/$id/',
+    path: '/resonators/$id/',
+    getParentRoute: () => ProtectedPanelRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
+  '/panel': typeof ProtectedPanelRouteRouteWithChildren
+  '/test': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/login': typeof AuthedLoginIndexRoute
+  '/panel/home': typeof ProtectedPanelHomeIndexRoute
+  '/panel/resonators': typeof ProtectedPanelResonatorsIndexRoute
+  '/panel/weapons': typeof ProtectedPanelWeaponsIndexRoute
+  '/panel/resonators/$id': typeof ProtectedPanelResonatorsIdIndexRoute
+  '/panel/resonators/new': typeof ProtectedPanelResonatorsNewIndexRoute
+  '/panel/weapons/$id': typeof ProtectedPanelWeaponsIdIndexRoute
+  '/panel/weapons/new': typeof ProtectedPanelWeaponsNewIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
+  '/panel': typeof ProtectedPanelRouteRouteWithChildren
+  '/test': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/login': typeof AuthedLoginIndexRoute
+  '/panel/home': typeof ProtectedPanelHomeIndexRoute
+  '/panel/resonators': typeof ProtectedPanelResonatorsIndexRoute
+  '/panel/weapons': typeof ProtectedPanelWeaponsIndexRoute
+  '/panel/resonators/$id': typeof ProtectedPanelResonatorsIdIndexRoute
+  '/panel/resonators/new': typeof ProtectedPanelResonatorsNewIndexRoute
+  '/panel/weapons/$id': typeof ProtectedPanelWeaponsIdIndexRoute
+  '/panel/weapons/new': typeof ProtectedPanelWeaponsNewIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
+  '/_authed': typeof AuthedRouteRouteWithChildren
+  '/_protected': typeof ProtectedRouteRouteWithChildren
+  '/_protected/panel': typeof ProtectedPanelRouteRouteWithChildren
+  '/test/': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/_authed/login/': typeof AuthedLoginIndexRoute
+  '/_protected/panel/home/': typeof ProtectedPanelHomeIndexRoute
+  '/_protected/panel/resonators/': typeof ProtectedPanelResonatorsIndexRoute
+  '/_protected/panel/weapons/': typeof ProtectedPanelWeaponsIndexRoute
+  '/_protected/panel/resonators/$id/': typeof ProtectedPanelResonatorsIdIndexRoute
+  '/_protected/panel/resonators/new/': typeof ProtectedPanelResonatorsNewIndexRoute
+  '/_protected/panel/weapons/$id/': typeof ProtectedPanelWeaponsIdIndexRoute
+  '/_protected/panel/weapons/new/': typeof ProtectedPanelWeaponsNewIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/login' | '/api/auth/$' | '/api/trpc/$'
+  fullPaths:
+    | '/'
+    | '/panel'
+    | '/test'
+    | '/api/auth/$'
+    | '/api/trpc/$'
+    | '/login'
+    | '/panel/home'
+    | '/panel/resonators'
+    | '/panel/weapons'
+    | '/panel/resonators/$id'
+    | '/panel/resonators/new'
+    | '/panel/weapons/$id'
+    | '/panel/weapons/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/api/auth/$' | '/api/trpc/$'
-  id: '__root__' | '/' | '/dashboard' | '/login' | '/api/auth/$' | '/api/trpc/$'
+  to:
+    | '/'
+    | '/panel'
+    | '/test'
+    | '/api/auth/$'
+    | '/api/trpc/$'
+    | '/login'
+    | '/panel/home'
+    | '/panel/resonators'
+    | '/panel/weapons'
+    | '/panel/resonators/$id'
+    | '/panel/resonators/new'
+    | '/panel/weapons/$id'
+    | '/panel/weapons/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authed'
+    | '/_protected'
+    | '/_protected/panel'
+    | '/test/'
+    | '/api/auth/$'
+    | '/api/trpc/$'
+    | '/_authed/login/'
+    | '/_protected/panel/home/'
+    | '/_protected/panel/resonators/'
+    | '/_protected/panel/weapons/'
+    | '/_protected/panel/resonators/$id/'
+    | '/_protected/panel/resonators/new/'
+    | '/_protected/panel/weapons/$id/'
+    | '/_protected/panel/weapons/new/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
-  LoginRoute: typeof LoginRoute
+  AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
+  ProtectedRouteRoute: typeof ProtectedRouteRouteWithChildren
+  TestIndexRoute: typeof TestIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -101,6 +234,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/test/': {
+      id: '/test/'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/panel': {
+      id: '/_protected/panel'
+      path: '/panel'
+      fullPath: '/panel'
+      preLoaderRoute: typeof ProtectedPanelRouteRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
+    '/_authed/login/': {
+      id: '/_authed/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthedLoginIndexRouteImport
+      parentRoute: typeof AuthedRouteRoute
     }
     '/api/trpc/$': {
       id: '/api/trpc/$'
@@ -116,13 +270,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/panel/weapons/': {
+      id: '/_protected/panel/weapons/'
+      path: '/weapons'
+      fullPath: '/panel/weapons'
+      preLoaderRoute: typeof ProtectedPanelWeaponsIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/resonators/': {
+      id: '/_protected/panel/resonators/'
+      path: '/resonators'
+      fullPath: '/panel/resonators'
+      preLoaderRoute: typeof ProtectedPanelResonatorsIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/home/': {
+      id: '/_protected/panel/home/'
+      path: '/home'
+      fullPath: '/panel/home'
+      preLoaderRoute: typeof ProtectedPanelHomeIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/weapons/new/': {
+      id: '/_protected/panel/weapons/new/'
+      path: '/weapons/new'
+      fullPath: '/panel/weapons/new'
+      preLoaderRoute: typeof ProtectedPanelWeaponsNewIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/weapons/$id/': {
+      id: '/_protected/panel/weapons/$id/'
+      path: '/weapons/$id'
+      fullPath: '/panel/weapons/$id'
+      preLoaderRoute: typeof ProtectedPanelWeaponsIdIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/resonators/new/': {
+      id: '/_protected/panel/resonators/new/'
+      path: '/resonators/new'
+      fullPath: '/panel/resonators/new'
+      preLoaderRoute: typeof ProtectedPanelResonatorsNewIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
+    '/_protected/panel/resonators/$id/': {
+      id: '/_protected/panel/resonators/$id/'
+      path: '/resonators/$id'
+      fullPath: '/panel/resonators/$id'
+      preLoaderRoute: typeof ProtectedPanelResonatorsIdIndexRouteImport
+      parentRoute: typeof ProtectedPanelRouteRoute
+    }
   }
 }
 
+interface AuthedRouteRouteChildren {
+  AuthedLoginIndexRoute: typeof AuthedLoginIndexRoute
+}
+
+const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
+  AuthedLoginIndexRoute: AuthedLoginIndexRoute,
+}
+
+const AuthedRouteRouteWithChildren = AuthedRouteRoute._addFileChildren(
+  AuthedRouteRouteChildren,
+)
+
+interface ProtectedPanelRouteRouteChildren {
+  ProtectedPanelHomeIndexRoute: typeof ProtectedPanelHomeIndexRoute
+  ProtectedPanelResonatorsIndexRoute: typeof ProtectedPanelResonatorsIndexRoute
+  ProtectedPanelWeaponsIndexRoute: typeof ProtectedPanelWeaponsIndexRoute
+  ProtectedPanelResonatorsIdIndexRoute: typeof ProtectedPanelResonatorsIdIndexRoute
+  ProtectedPanelResonatorsNewIndexRoute: typeof ProtectedPanelResonatorsNewIndexRoute
+  ProtectedPanelWeaponsIdIndexRoute: typeof ProtectedPanelWeaponsIdIndexRoute
+  ProtectedPanelWeaponsNewIndexRoute: typeof ProtectedPanelWeaponsNewIndexRoute
+}
+
+const ProtectedPanelRouteRouteChildren: ProtectedPanelRouteRouteChildren = {
+  ProtectedPanelHomeIndexRoute: ProtectedPanelHomeIndexRoute,
+  ProtectedPanelResonatorsIndexRoute: ProtectedPanelResonatorsIndexRoute,
+  ProtectedPanelWeaponsIndexRoute: ProtectedPanelWeaponsIndexRoute,
+  ProtectedPanelResonatorsIdIndexRoute: ProtectedPanelResonatorsIdIndexRoute,
+  ProtectedPanelResonatorsNewIndexRoute: ProtectedPanelResonatorsNewIndexRoute,
+  ProtectedPanelWeaponsIdIndexRoute: ProtectedPanelWeaponsIdIndexRoute,
+  ProtectedPanelWeaponsNewIndexRoute: ProtectedPanelWeaponsNewIndexRoute,
+}
+
+const ProtectedPanelRouteRouteWithChildren =
+  ProtectedPanelRouteRoute._addFileChildren(ProtectedPanelRouteRouteChildren)
+
+interface ProtectedRouteRouteChildren {
+  ProtectedPanelRouteRoute: typeof ProtectedPanelRouteRouteWithChildren
+}
+
+const ProtectedRouteRouteChildren: ProtectedRouteRouteChildren = {
+  ProtectedPanelRouteRoute: ProtectedPanelRouteRouteWithChildren,
+}
+
+const ProtectedRouteRouteWithChildren = ProtectedRouteRoute._addFileChildren(
+  ProtectedRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
-  LoginRoute: LoginRoute,
+  AuthedRouteRoute: AuthedRouteRouteWithChildren,
+  ProtectedRouteRoute: ProtectedRouteRouteWithChildren,
+  TestIndexRoute: TestIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
 }
