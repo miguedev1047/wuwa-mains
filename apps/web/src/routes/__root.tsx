@@ -14,6 +14,8 @@ import {
 import { Loader } from "@/components/loader";
 import { Toaster } from "@/components/ui/sonner";
 import { Devtools } from "@/components/devtools";
+import { ThemeProvider } from "@/components/theme-provider";
+import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 
 export interface RouterAppContext {
   trpc: TRPCOptionsProxy<AppRouter>;
@@ -31,7 +33,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "My App",
+        title: "Wuwa Mains",
       },
     ],
     links: [
@@ -53,10 +55,20 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
-        <div className="grid h-svh grid-rows-[auto_1fr]">
-          {isFetching ? <Loader /> : <Outlet />}
-        </div>
-        <Toaster richColors />
+        <ThemeProvider
+          attribute="class"
+          enableSystem
+          disableTransitionOnChange
+          defaultTheme="dark"
+          storageKey="theme"
+        >
+          <NuqsAdapter>
+            <div className="grid h-svh grid-rows-[auto_1fr]">
+              {isFetching ? <Loader /> : <Outlet />}
+            </div>
+          </NuqsAdapter>
+          <Toaster richColors />
+        </ThemeProvider>
         <Devtools />
         <Scripts />
       </body>
