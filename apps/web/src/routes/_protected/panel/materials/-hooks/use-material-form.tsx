@@ -90,8 +90,6 @@ export function useMaterialForm(props: MaterialFormProps) {
     },
   });
 
-  console.log(form.state.errors);
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     form.handleSubmit();
