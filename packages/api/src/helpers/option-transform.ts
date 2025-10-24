@@ -1,4 +1,4 @@
-import { type OptionZodSchema } from "@wuwa-mains/schemas/zod/option-schema";
+import type { OptionZodSchema } from "@wuwa-mains/schemas/zod/option-schema";
 
 interface combatStylesTransformOptsProps {
   combatStyles: OptionZodSchema[];
@@ -16,4 +16,20 @@ export function combatStylesTransformOpts(
     value: item.value as never,
   }));
   return mapCombatStyles;
+}
+
+interface echoSetsTransformOptsProps {
+  echoSets: OptionZodSchema[];
+  echoId: string;
+}
+
+export function echoSetsTransformOpts(props: echoSetsTransformOptsProps) {
+  const { echoSets, echoId } = props;
+  const mapEchoSets = echoSets.map((item) => ({
+    id: crypto.randomUUID(),
+    echo_id: echoId,
+    label: item.label,
+    value: item.value as never,
+  }));
+  return mapEchoSets;
 }
