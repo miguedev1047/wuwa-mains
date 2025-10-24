@@ -66,7 +66,7 @@ export const SELECT_ECHO_SET = [
     value: "freezing_frost",
     description: [
       "2 Piezas: Daño Glacis aumentado en 10%",
-      "5 Piezas: Al lanzar Ataque Básico o Ataque Pesado, el Daño Glacis aumenta en 10%, acumulándose hasta tres veces, durando 15 segundos",
+      "5 Piezas: Al lanzar Ataque Básico o Ataque Pesado, el Daño Glacis aumenta en 10%, acumulándose hasta tres veces, durante 15 segundos",
     ],
   },
   {
@@ -82,7 +82,7 @@ export const SELECT_ECHO_SET = [
     value: "void_thunder",
     description: [
       "2 Piezas: Daño Electro aumentado en 10%",
-      "5 Piezas: Al lanzar Ataque Pesado o Habilidad de Resonancia, el Daño Electro aumenta en 15%, acumulándose hasta dos veces, cada una durando 15 segundos",
+      "5 Piezas: Al lanzar Ataque Pesado o Habilidad de Resonancia, el Daño Electro aumenta en 15%, acumulándose hasta dos veces, cada una durante 15 segundos",
     ],
   },
   {
@@ -114,7 +114,7 @@ export const SELECT_ECHO_SET = [
     value: "rejuvenating_glow",
     description: [
       "2 Piezas: Curación aumentada en 10%",
-      "5 Piezas: Al curar aliados, el ATK de todo el equipo aumenta en 15%, durando 30s",
+      "5 Piezas: Al curar aliados, el ATK de todo el equipo aumenta en 15%, durante 30s",
     ],
   },
   {
@@ -138,7 +138,7 @@ export const SELECT_ECHO_SET = [
     value: "frosty_resolve",
     description: [
       "2 Piezas: Daño de Habilidad de Resonancia +12%",
-      "5 Piezas: Lanzar Habilidad de Resonancia otorga 18% de Bono de Daño Glacis durante 18s y lanzar Liberación de Resonancia aumenta el Daño de Habilidad de Resonancia en 5, durando 2s. Este efecto se acumula hasta tiempos indefinidos",
+      "5 Piezas: Lanzar Habilidad de Resonancia otorga 18% de Bono de Daño Glacis durante 18s y lanzar Liberación de Resonancia aumenta el Daño de Habilidad de Resonancia en 5, durante 2s. Este efecto se acumula hasta tiempos indefinidos",
     ],
   },
   {
@@ -178,7 +178,7 @@ export const SELECT_ECHO_SET = [
     value: "gusts_of_welkin",
     description: [
       "2 Pc: Daño Aero +10%",
-      "5 Pc: Infligir Erosión Aero a enemigos aumenta el Daño Aero para todos los Resonadores del equipo en 15%, y para el Resonador que activa este efecto en 15% adicional, durando 20s",
+      "5 Pc: Infligir Erosión Aero a enemigos aumenta el Daño Aero para todos los Resonadores del equipo en 15%, y para el Resonador que activa este efecto en 15% adicional, durante 20s",
     ],
   },
   {
@@ -186,7 +186,7 @@ export const SELECT_ECHO_SET = [
     value: "windward_pilgrimage",
     description: [
       "2 Pc: Daño Aero +10%",
-      "5 Pc: Golpear un objetivo con Erosión Aero aumenta la Tasa de Crítico en 10% y otorga 30% de Bono de Daño Aero, durando 10s",
+      "5 Pc: Golpear un objetivo con Erosión Aero aumenta la Tasa de Crítico en 10% y otorga 30% de Bono de Daño Aero, durante 10s",
     ],
   },
   {
@@ -194,7 +194,7 @@ export const SELECT_ECHO_SET = [
     value: "flaming_clawprint",
     description: [
       "2 Pc: Daño Fusión +10%",
-      "5 Pc: Lanzar Liberación de Resonancia otorga a todos los Resonadores del equipo 15% de Bono de Daño Fusión y al lanzador 20% adicional de Bono de Daño de Liberación de Resonancia, durando 35s",
+      "5 Pc: Lanzar Liberación de Resonancia otorga a todos los Resonadores del equipo 15% de Bono de Daño Fusión y al lanzador 20% adicional de Bono de Daño de Liberación de Resonancia, durante 35s",
     ],
   },
   {
