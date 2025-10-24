@@ -5,7 +5,6 @@ import {
 import { cn } from "@/lib/utils";
 import { listGridClass } from "@/tw-class";
 import { useMaterialList } from "@/routes/_protected/panel/materials/-hooks";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function MaterialList() {
   const { filteredMaterials } = useMaterialList();
@@ -20,9 +19,5 @@ export function MaterialList() {
     </li>
   ));
 
-  return (
-    <TooltipProvider>
-      <ul className={cn(listGridClass)}>{MAPPED_MATERIALS}</ul>
-    </TooltipProvider>
-  );
+  return <ul className={cn(listGridClass)}>{MAPPED_MATERIALS}</ul>;
 }

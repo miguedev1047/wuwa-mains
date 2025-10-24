@@ -5,7 +5,6 @@ import {
 import { cn } from "@/lib/utils";
 import { listGridClass } from "@/tw-class";
 import { useResonatorList } from "@/routes/_protected/panel/resonators/-hooks";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function ResonatorList() {
   const { filteredResonators } = useResonatorList();
@@ -18,9 +17,5 @@ export function ResonatorList() {
     </li>
   ));
 
-  return (
-    <TooltipProvider>
-      <ul className={cn(listGridClass)}>{MAPPED_RESONATORS}</ul>
-    </TooltipProvider>
-  );
+  return <ul className={cn(listGridClass)}>{MAPPED_RESONATORS}</ul>;
 }

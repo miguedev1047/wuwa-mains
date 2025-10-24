@@ -5,7 +5,6 @@ import {
 import { cn } from "@/lib/utils";
 import { listGridClass } from "@/tw-class";
 import { useWeaponList } from "@/routes/_protected/panel/weapons/-hooks";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function WeaponList() {
   const { filteredWeapons } = useWeaponList();
@@ -20,9 +19,5 @@ export function WeaponList() {
     </li>
   ));
 
-  return (
-    <TooltipProvider>
-      <ul className={cn(listGridClass)}>{MAPPED_WEAPONS}</ul>
-    </TooltipProvider>
-  );
+  return <ul className={cn(listGridClass)}>{MAPPED_WEAPONS}</ul>;
 }
