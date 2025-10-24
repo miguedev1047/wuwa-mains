@@ -2,7 +2,7 @@ import appCss from "../index.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
-import type { AppRouter } from "@wuwa-mains/api/routers/index";
+import type { AppRouter } from "@wuwa-mains/api/routers/__root";
 
 import {
   HeadContent,

@@ -1,4 +1,4 @@
-import type { AppRouter } from "@wuwa-mains/api/routers/index";
+import type { AppRouter } from "@wuwa-mains/api/routers/__root";
 
 import superjson from "superjson";
 

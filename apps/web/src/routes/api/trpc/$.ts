@@ -1,5 +1,5 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "@wuwa-mains/api/routers/index";
+import { appRouter } from "@wuwa-mains/api/routers/__root";
 import { createContext } from "@wuwa-mains/api/context";
 import { createFileRoute } from "@tanstack/react-router";
 
