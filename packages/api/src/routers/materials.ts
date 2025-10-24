@@ -1,6 +1,6 @@
 import { materials } from "@wuwa-mains/db/schema/material-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
-import { publicProcedure } from "../index";
+import { protectedProcedure, publicProcedure } from "../index";
 import { idZodSchema } from "@wuwa-mains/schemas";
 import { eq } from "drizzle-orm";
 import { materialZodSchema } from "@wuwa-mains/schemas/zod/material-schema";
@@ -44,7 +44,7 @@ export const materialsRouter = {
       });
     }
   }),
-  update: publicProcedure
+  update: protectedProcedure
     .input(materialZodSchema.extend(idZodSchema.shape))
     .mutation(async ({ ctx, input }) => {
       try {
@@ -77,7 +77,7 @@ export const materialsRouter = {
         });
       }
     }),
-  add: publicProcedure
+  add: protectedProcedure
     .input(materialZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
@@ -102,7 +102,7 @@ export const materialsRouter = {
         });
       }
     }),
-  delete: publicProcedure
+  delete: protectedProcedure
     .input(idZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
