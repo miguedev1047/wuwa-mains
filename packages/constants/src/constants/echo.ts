@@ -177,60 +177,60 @@ export const SELECT_ECHO_SET = [
     label: "Ráfagas de viento",
     value: "gusts_of_welkin",
     description: [
-      "2 Pc: Daño Aero +10%",
-      "5 Pc: Infligir Erosión Aero a enemigos aumenta el Daño Aero para todos los Resonadores del equipo en 15%, y para el Resonador que activa este efecto en 15% adicional, durante 20s",
+      "2 Piezas: Daño Aero +10%",
+      "5 Piezas: Infligir Erosión Aero a enemigos aumenta el Daño Aero para todos los Resonadores del equipo en 15%, y para el Resonador que activa este efecto en 15% adicional, durante 20s",
     ],
   },
   {
     label: "Peregrinaje al viento",
     value: "windward_pilgrimage",
     description: [
-      "2 Pc: Daño Aero +10%",
-      "5 Pc: Golpear un objetivo con Erosión Aero aumenta la Tasa de Crítico en 10% y otorga 30% de Bono de Daño Aero, durante 10s",
+      "2 Piezas: Daño Aero +10%",
+      "5 Piezas: Golpear un objetivo con Erosión Aero aumenta la Tasa de Crítico en 10% y otorga 30% de Bono de Daño Aero, durante 10s",
     ],
   },
   {
     label: "Huella llameante",
     value: "flaming_clawprint",
     description: [
-      "2 Pc: Daño Fusión +10%",
-      "5 Pc: Lanzar Liberación de Resonancia otorga a todos los Resonadores del equipo 15% de Bono de Daño Fusión y al lanzador 20% adicional de Bono de Daño de Liberación de Resonancia, durante 35s",
+      "2 Piezas: Daño Fusión +10%",
+      "5 Piezas: Lanzar Liberación de Resonancia otorga a todos los Resonadores del equipo 15% de Bono de Daño Fusión y al lanzador 20% adicional de Bono de Daño de Liberación de Resonancia, durante 35s",
     ],
   },
   {
     label: "Sueño del más allá",
     value: "dream_of_the_lost",
     description: [
-      "3 Pc: Mantener 0 de Energía de Resonancia aumenta la Tasa de Crítico en 20% y otorga 36% de Bono de Daño de Habilidad Eco",
+      "3 Piezas: Mantener 0 de Energía de Resonancia aumenta la Tasa de Crítico en 20% y otorga 36% de Bono de Daño de Habilidad Eco",
     ],
   },
   {
     label: "Corona del valor",
     value: "crown_of_valor",
     description: [
-      "3 Pc: Al ganar un Escudo, aumenta el ATK del Resonador en 6% y Daño Crítico en 4% durante 4s. Este efecto puede activarse una vez cada 0.5s y se acumula hasta 5 veces",
+      "3 Piezas: Al ganar un Escudo, aumenta el ATK del Resonador en 6% y Daño Crítico en 4% durante 4s. Este efecto puede activarse una vez cada 0.5s y se acumula hasta 5 veces",
     ],
   },
   {
     label: "Ley de la armonía",
     value: "law_of_harmony",
     description: [
-      "3 Pc: Lanzar Habilidad Eco otorga 30% de Bono de Daño de Ataque Pesado al lanzador durante 4s. Además, todos los Resonadores del equipo ganan 4% de Bono de Daño de Habilidad Eco durante 30s, acumulándose hasta 4 veces. Los Ecos del mismo nombre solo pueden activar este efecto una vez. Al 4 acumulaciones, lanzar Habilidad Eco nuevamente restablece la duración de este efecto",
+      "3 Piezas: Lanzar Habilidad Eco otorga 30% de Bono de Daño de Ataque Pesado al lanzador durante 4s. Además, todos los Resonadores del equipo ganan 4% de Bono de Daño de Habilidad Eco durante 30s, acumulándose hasta 4 veces. Los Ecos del mismo nombre solo pueden activar este efecto una vez. Al 4 acumulaciones, lanzar Habilidad Eco nuevamente restablece la duración de este efecto",
     ],
   },
   {
     label: "Sombra de alallama",
     value: "flamewing_shadow",
     description: [
-      "3 Pc: Lanzar Daño de Habilidad Eco aumenta el Daño Crítico de Ataque Pesado en 20% durante 6s. Lanzar Daño de Ataque Pesado aumenta la Tasa Crítica de Habilidad Eco en 20% durante 6s. Mientras ambos efectos están activos, gana 16% de Bono de Daño Fusión",
+      "3 Piezas: Lanzar Daño de Habilidad Eco aumenta el Daño Crítico de Ataque Pesado en 20% durante 6s. Lanzar Daño de Ataque Pesado aumenta la Tasa Crítica de Habilidad Eco en 20% durante 6s. Mientras ambos efectos están activos, gana 16% de Bono de Daño Fusión",
     ],
   },
   {
     label: "Hilo de destino cortado",
     value: "thread_of_severed_fate",
     description: [
-      "2 Pc: Regen. de energía +10%",
-      "5 Pc: Aumenta el ATQ del personaje un 15%. Al alcanzar 250% de Regen. de energía, aumenta el daño de todos los atributos del personaje un 30%.",
+      "2 Piezas: Regen. de energía +10%",
+      "5 Piezas: Aumenta el ATQ del personaje un 15%. Al alcanzar 250% de Regen. de energía, aumenta el daño de todos los atributos del personaje un 30%.",
     ],
   },
   {
