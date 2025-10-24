@@ -226,7 +226,7 @@ export const SELECT_ECHO_SET = [
     ],
   },
   {
-    label: "(Proximamente...)",
+    label: "Hilo de destino cortado",
     value: "thread_of_severed_fate",
     description: [
       "2 Pc: Regen. de energía +10%",
