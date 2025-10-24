@@ -1,3 +1,4 @@
+import type { EchoZodSchema } from "@wuwa-mains/schemas/zod/echo-schema";
 import type { MaterialZodSchema } from "@wuwa-mains/schemas/zod/material-schema";
 import type { ResonatorZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
 import type { WeaponZodSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
@@ -60,4 +61,20 @@ export function getDefaultMaterialValues(
     createdAt: isEditing ? data!.createdAt : new Date(),
     updatedAt: isEditing ? data!.updatedAt : new Date(),
   } satisfies MaterialZodSchema;
+}
+
+export function getDefaultEchoValues(data?: EchoZodSchema): EchoZodSchema {
+  const isEditing = !!data;
+
+  return {
+    name: isEditing ? data!.name : "",
+    description: isEditing ? data!.description : "",
+    avatar_image: isEditing ? data!.avatar_image : "",
+    skill_image: isEditing ? data!.skill_image : "",
+    class: isEditing ? data!.class : "none",
+    cost: isEditing ? data!.cost : "none",
+    sets: isEditing ? data!.sets : [],
+    createdAt: isEditing ? data!.createdAt : new Date(),
+    updatedAt: isEditing ? data!.updatedAt : new Date(),
+  } satisfies EchoZodSchema;
 }
