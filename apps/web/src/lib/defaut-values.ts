@@ -1,5 +1,6 @@
-import { type ResonatorZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
-import { type WeaponZodSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
+import type { MaterialZodSchema } from "@wuwa-mains/schemas/zod/material-schema";
+import type { ResonatorZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
+import type { WeaponZodSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
 
 export function getDefaultResonatorValues(
   data?: ResonatorZodSchema,
@@ -43,4 +44,20 @@ export function getDefaultWeaponValues(
     createdAt: isEditing ? data!.createdAt : new Date(),
     updatedAt: isEditing ? data!.updatedAt : new Date(),
   } satisfies WeaponZodSchema;
+}
+
+export function getDefaultMaterialValues(
+  data?: MaterialZodSchema,
+): MaterialZodSchema {
+  const isEditing = !!data;
+
+  return {
+    name: isEditing ? data!.name : "",
+    description: isEditing ? data!.description : "",
+    avatar_image: isEditing ? data!.avatar_image : "",
+    stars: isEditing ? data!.stars : "none",
+    material_type: isEditing ? data!.material_type : "none",
+    createdAt: isEditing ? data!.createdAt : new Date(),
+    updatedAt: isEditing ? data!.updatedAt : new Date(),
+  } satisfies MaterialZodSchema;
 }
