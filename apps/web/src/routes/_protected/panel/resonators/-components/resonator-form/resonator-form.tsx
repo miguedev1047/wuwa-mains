@@ -114,8 +114,8 @@ export function AddResonatorForm(props: ResonatorFormProps) {
               <form.AppField name="combat_styles">
                 {(field) => (
                   <field.MultiSelectField
-                    label="Estrellas del resonador"
-                    description="Ingresa las estrellas del resonador."
+                    label="Estilos de combate"
+                    description="Ingresa los estilos de combate del resonador."
                     placeholder="Selecciona un estilo de combate"
                     notFound="No se han encontrado estilos de combate."
                     items={SELECT_COMBAT_STYLES}
@@ -271,8 +271,8 @@ export function EditResonatorForm(props: ResonatorFormProps) {
               <form.AppField name="combat_styles">
                 {(field) => (
                   <field.MultiSelectField
-                    label="Estrellas del resonador"
-                    description="Ingresa las estrellas del resonador."
+                    label="Estilos de combate"
+                    description="Ingresa los estilos de combate del resonador."
                     placeholder="Selecciona un estilo de combate"
                     notFound="No se han encontrado estilos de combate."
                     items={SELECT_COMBAT_STYLES}
