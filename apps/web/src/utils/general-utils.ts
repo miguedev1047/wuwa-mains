@@ -3,9 +3,14 @@ import {
   SELECT_WEAPON_TYPE,
   SELECT_ELEMENT_TYPE,
   SELECT_MATERIAL_TYPE,
+  SELECT_ECHO_SET,
 } from "@wuwa-mains/constants";
 
-const UNDEFINED_OPTS = { label: "No definido", value: "undefined" };
+const UNDEFINED_OPTS = {
+  label: "No definido",
+  value: "undefined",
+  description: ["No definido"],
+};
 
 export function getWeaponType(weaponType: string) {
   const WEAPON_TYPE = SELECT_WEAPON_TYPE.find(
@@ -37,4 +42,10 @@ export function getMaterialType(materialType: string) {
   );
   if (!MATERIAL_TYPE) return UNDEFINED_OPTS;
   return MATERIAL_TYPE;
+}
+
+export function getEchoSet(echoSet: string) {
+  const ECHO_SET = SELECT_ECHO_SET.find((set) => set.value === echoSet);
+  if (!ECHO_SET) return UNDEFINED_OPTS;
+  return ECHO_SET;
 }
