@@ -158,6 +158,7 @@ export const resonatorsRouter = {
           message: "Resonador eliminado.",
         };
       } catch (error) {
+        console.error("Error deleting resonator:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Error al eliminar el resonador.",

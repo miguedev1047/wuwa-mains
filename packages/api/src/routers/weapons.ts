@@ -114,6 +114,7 @@ export const weaponsRouter = {
           message: "Arma eliminada.",
         };
       } catch (error) {
+        console.error("Error deleting weapon:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Error al eliminar el arma.",
