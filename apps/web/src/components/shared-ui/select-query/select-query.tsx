@@ -49,7 +49,10 @@ export function SelectQueryComponent({
 
   return (
     <Select defaultValue={param} onValueChange={handleSearch}>
-      <SelectTrigger className={cn("flex-1 w-full", className)}>
+      <SelectTrigger
+        aria-label={`${param}-select-input`}
+        className={cn("flex-1 w-full", className)}
+      >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
