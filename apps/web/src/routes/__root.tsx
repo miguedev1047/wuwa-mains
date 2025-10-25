@@ -32,6 +32,8 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
       {
         title: "Wuwa Mains",
+        description:
+          "Una simple pagina para mostrar a tus personajes con amigos.",
       },
     ],
     links: [
@@ -41,7 +43,6 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
     ],
   }),
-
   component: RootDocument,
 });
 
@@ -62,7 +63,7 @@ function RootDocument() {
           <NuqsAdapter>
             <Outlet />
           </NuqsAdapter>
-          <Toaster richColors />
+          <Toaster />
         </ThemeProvider>
         <Devtools />
         <Scripts />
