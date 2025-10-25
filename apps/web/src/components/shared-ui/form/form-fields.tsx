@@ -298,16 +298,26 @@ export function ErrorField() {
   );
 }
 
-interface SubmitButtonProps extends React.ComponentProps<typeof Button> {}
+interface SubmitButtonProps extends React.ComponentProps<typeof Button> {
+  isPending?: boolean;
+}
 
-export function SubmitButton({ children, ...props }: SubmitButtonProps) {
+export function SubmitButton({
+  children,
+  isPending,
+  ...props
+}: SubmitButtonProps) {
   const form = useFormContext();
   return (
-    <form.Subscribe selector={(state) => [state.isSubmitting, state.canSubmit]}>
-      {([isSubmitting, canSubmit]) => (
-        <Button type="submit" disabled={!canSubmit} {...props}>
-          {isSubmitting && <Spinner />}
-          {!isSubmitting && children}
+    <form.Subscribe selector={(state) => state.canSubmit}>
+      {(canSubmit) => (
+        <Button type="submit" disabled={!canSubmit || isPending} {...props}>
+          {isPending && (
+            <>
+              <Spinner /> Cargando...
+            </>
+          )}
+          {!isPending && children}
         </Button>
       )}
     </form.Subscribe>
