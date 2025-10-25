@@ -1,7 +1,6 @@
 import { useTRPC } from "@/trpc/root";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { parseAsString, useQueryStates } from "nuqs";
-import type { ResonatorDatabaseSchema } from "@/routes/_protected/panel/resonators/-types";
 
 export const searchParams = {
   name: parseAsString.withDefault(""),
