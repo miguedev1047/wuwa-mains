@@ -28,7 +28,11 @@ export function ResonatorActions(resonator: ResonatorDatabaseSchema) {
     <AlertDialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size="icon" className="absolute bottom-1 right-1">
+          <Button
+            aria-label="resonator-actions"
+            size="icon"
+            className="absolute bottom-1 right-1"
+          >
             <SettingsIcon />
           </Button>
         </DropdownMenuTrigger>

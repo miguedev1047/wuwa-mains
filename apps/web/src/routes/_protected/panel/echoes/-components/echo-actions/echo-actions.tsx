@@ -27,7 +27,11 @@ export function EchoActions(echo: EchoesDatabaseSchema) {
     <AlertDialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size="icon" className="absolute bottom-1 right-1">
+          <Button
+            aria-label="echo-actions"
+            size="icon"
+            className="absolute bottom-1 right-1"
+          >
             <SettingsIcon />
           </Button>
         </DropdownMenuTrigger>
