@@ -20,7 +20,7 @@ export function MaterialItem(data: MaterialDatabaseSchema) {
         <div
           className={cn(
             "relative z-10",
-            "relative aspect-square bg-card border shadow-sm rounded-(--radius)",
+            "relative aspect-square bg-card border shadow-lg rounded-(--radius) overflow-hidden",
           )}
         >
           <Link
