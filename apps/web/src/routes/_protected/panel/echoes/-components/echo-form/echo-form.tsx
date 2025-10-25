@@ -8,7 +8,7 @@ import { useEchoForm } from "@/routes/_protected/panel/echoes/-hooks";
 import { type EchoesFormProps } from "@/routes/_protected/panel/echoes/-types";
 
 export function AddEchoForm(props: EchoesFormProps) {
-  const { form, formId, isEditing, onSubmit } = useEchoForm(props);
+  const { form, formId, isEditing, onSubmit, isPending } = useEchoForm(props);
 
   return (
     <form.AppForm>
@@ -106,7 +106,7 @@ export function AddEchoForm(props: EchoesFormProps) {
           renderFooter={
             <form.FormCardFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar eco"}
                 </form.SubmitButton>
@@ -120,8 +120,15 @@ export function AddEchoForm(props: EchoesFormProps) {
 }
 
 export function EditEchoForm(props: EchoesFormProps) {
-  const { form, formId, isEditing, onSubmit, dialogOpen, setDialogOpen } =
-    useEchoForm(props);
+  const {
+    form,
+    formId,
+    isEditing,
+    onSubmit,
+    dialogOpen,
+    setDialogOpen,
+    isPending,
+  } = useEchoForm(props);
 
   return (
     <form.AppForm>
@@ -222,7 +229,7 @@ export function EditEchoForm(props: EchoesFormProps) {
           renderFooter={
             <form.FormSheetFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar eco"}
                 </form.SubmitButton>

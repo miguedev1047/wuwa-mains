@@ -8,7 +8,7 @@ import { useWeaponForm } from "@/routes/_protected/panel/weapons/-hooks";
 import { PencilIcon, PlusIcon } from "lucide-react";
 
 export function AddWeaponForm(props: WeaponFormProps) {
-  const { form, formId, isEditing, onSubmit } = useWeaponForm(props);
+  const { form, formId, isEditing, onSubmit, isPending } = useWeaponForm(props);
 
   return (
     <form.AppForm>
@@ -148,7 +148,7 @@ export function AddWeaponForm(props: WeaponFormProps) {
           renderFooter={
             <form.FormCardFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar arma"}
                 </form.SubmitButton>
@@ -162,8 +162,15 @@ export function AddWeaponForm(props: WeaponFormProps) {
 }
 
 export function EditWeaponForm(props: WeaponFormProps) {
-  const { form, formId, isEditing, onSubmit, dialogOpen, setDialogOpen } =
-    useWeaponForm(props);
+  const {
+    form,
+    formId,
+    isEditing,
+    onSubmit,
+    dialogOpen,
+    setDialogOpen,
+    isPending,
+  } = useWeaponForm(props);
 
   return (
     <form.AppForm>
@@ -306,7 +313,7 @@ export function EditWeaponForm(props: WeaponFormProps) {
           renderFooter={
             <form.FormSheetFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar arma"}
                 </form.SubmitButton>

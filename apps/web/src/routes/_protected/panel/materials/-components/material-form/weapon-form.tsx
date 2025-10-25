@@ -4,7 +4,8 @@ import { useMaterialForm } from "@/routes/_protected/panel/materials/-hooks";
 import { PencilIcon, PlusIcon } from "lucide-react";
 
 export function AddMaterialForm(props: MaterialFormProps) {
-  const { form, formId, isEditing, onSubmit } = useMaterialForm(props);
+  const { form, formId, isEditing, onSubmit, isPending } =
+    useMaterialForm(props);
 
   return (
     <form.AppForm>
@@ -80,7 +81,7 @@ export function AddMaterialForm(props: MaterialFormProps) {
           renderFooter={
             <form.FormCardFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar material"}
                 </form.SubmitButton>
@@ -94,8 +95,15 @@ export function AddMaterialForm(props: MaterialFormProps) {
 }
 
 export function EditMaterialForm(props: MaterialFormProps) {
-  const { form, formId, isEditing, onSubmit, dialogOpen, setDialogOpen } =
-    useMaterialForm(props);
+  const {
+    form,
+    formId,
+    isEditing,
+    onSubmit,
+    dialogOpen,
+    setDialogOpen,
+    isPending,
+  } = useMaterialForm(props);
 
   return (
     <form.AppForm>
@@ -174,7 +182,7 @@ export function EditMaterialForm(props: MaterialFormProps) {
           renderFooter={
             <form.FormSheetFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar material"}
                 </form.SubmitButton>

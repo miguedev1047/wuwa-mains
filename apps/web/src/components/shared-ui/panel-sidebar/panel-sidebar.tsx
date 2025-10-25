@@ -23,7 +23,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
-import { Link, useNavigate, useRouteContext } from "@tanstack/react-router";
+import {
+  Link,
+  useNavigate,
+  useRouteContext,
+  useRouter,
+} from "@tanstack/react-router";
 import { PANEL_ROUTES } from "@wuwa-mains/constants/constants/panel-routes";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -133,6 +138,7 @@ export function PanelSidebarProfile() {
   const { user } = useRouteContext({ from: "/_protected" });
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const router = useRouter();
   useIsMounted();
 
   if (!user) return <Skeleton className="w-full h-8" />;
@@ -141,8 +147,9 @@ export function PanelSidebarProfile() {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          navigate({ to: "/" });
           toast.success("Cerrando sesión...");
+          router.invalidate();
+          navigate({ to: "/" });
         },
         onError: () => {
           toast.error("Error al cerrar sesión.");

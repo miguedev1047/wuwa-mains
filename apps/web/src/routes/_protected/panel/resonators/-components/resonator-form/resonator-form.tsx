@@ -9,7 +9,8 @@ import { useResonatorForm } from "@/routes/_protected/panel/resonators/-hooks";
 import { type ResonatorFormProps } from "@/routes/_protected/panel/resonators/-types";
 
 export function AddResonatorForm(props: ResonatorFormProps) {
-  const { form, formId, isEditing, onSubmit } = useResonatorForm(props);
+  const { form, formId, isEditing, onSubmit, isPending } =
+    useResonatorForm(props);
 
   return (
     <form.AppForm>
@@ -148,7 +149,7 @@ export function AddResonatorForm(props: ResonatorFormProps) {
           renderFooter={
             <form.FormCardFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar resonador"}
                 </form.SubmitButton>
@@ -162,8 +163,15 @@ export function AddResonatorForm(props: ResonatorFormProps) {
 }
 
 export function EditResonatorForm(props: ResonatorFormProps) {
-  const { form, formId, isEditing, onSubmit, dialogOpen, setDialogOpen } =
-    useResonatorForm(props);
+  const {
+    form,
+    formId,
+    isEditing,
+    onSubmit,
+    dialogOpen,
+    setDialogOpen,
+    isPending,
+  } = useResonatorForm(props);
 
   return (
     <form.AppForm>
@@ -305,7 +313,7 @@ export function EditResonatorForm(props: ResonatorFormProps) {
           renderFooter={
             <form.FormSheetFooter>
               <form.AppForm>
-                <form.SubmitButton form={formId}>
+                <form.SubmitButton isPending={isPending} form={formId}>
                   {isEditing ? <PencilIcon /> : <PlusIcon />}
                   {isEditing ? "Guardar cambios" : "Agregar resonador"}
                 </form.SubmitButton>

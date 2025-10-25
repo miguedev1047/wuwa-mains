@@ -28,6 +28,10 @@ export function useEchoForm(props: EchoesFormProps) {
 
   const DEFAULT_VALUES: EchoZodSchema = getDefaultEchoValues(data);
 
+  const addEchoesQueryKey = trpc.echoes.get.queryKey();
+  const invalidateQueryAddMaterials = () => {
+    queryClient.invalidateQueries({ queryKey: addEchoesQueryKey });
+  };
   const addEchoMutationOpts = trpc.echoes.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -44,11 +48,12 @@ export function useEchoForm(props: EchoesFormProps) {
   });
   const addEchoMutation = useMutation(addEchoMutationOpts);
 
-  const addEchoesQueryKey = trpc.echoes.get.queryKey();
-  const invalidateQueryAddMaterials = () => {
-    queryClient.invalidateQueries({ queryKey: addEchoesQueryKey });
+  const updateEchoQueryKey = trpc.echoes.unique.queryKey({
+    id: echoId,
+  });
+  const invalidateQueryUpdateEcho = () => {
+    queryClient.invalidateQueries({ queryKey: updateEchoQueryKey });
   };
-
   const updateEchoMutationOpts = trpc.echoes.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -65,30 +70,25 @@ export function useEchoForm(props: EchoesFormProps) {
   });
   const updateEchoMutation = useMutation(updateEchoMutationOpts);
 
-  const updateEchoQueryKey = trpc.echoes.unique.queryKey({
-    id: echoId,
-  });
-  const invalidateQueryUpdateEcho = () => {
-    queryClient.invalidateQueries({ queryKey: updateEchoQueryKey });
-  };
-
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
     validators: { onSubmit: echoZodSchema },
-    onSubmit: async ({ value }) => {
+    onSubmit: ({ value }) => {
       if (isEditing) {
         if (!echoId) {
           toast.error("Este eco no tiene ID definido.");
           return;
         }
 
-        await updateEchoMutation.mutateAsync({ id: echoId, ...value });
+        updateEchoMutation.mutate({ id: echoId, ...value });
         return;
       }
 
-      await addEchoMutation.mutateAsync(value);
+      addEchoMutation.mutate(value);
     },
   });
+
+  const isPending = updateEchoMutation.isPending || addEchoMutation.isPending;
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,5 +102,6 @@ export function useEchoForm(props: EchoesFormProps) {
     onSubmit,
     dialogOpen,
     setDialogOpen,
+    isPending,
   };
 }

@@ -27,6 +27,10 @@ export function useResonatorForm(props: ResonatorFormProps) {
 
   const DEFAULT_VALUES: ResonatorZodSchema = getDefaultResonatorValues(data);
 
+  const addResonatorsQueryKey = trpc.resonators.get.queryKey();
+  const invalidateQueryAddResonators = () => {
+    queryClient.invalidateQueries({ queryKey: addResonatorsQueryKey });
+  };
   const addResonatorMutationOpts = trpc.resonators.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -43,11 +47,12 @@ export function useResonatorForm(props: ResonatorFormProps) {
   });
   const addResonatorMutation = useMutation(addResonatorMutationOpts);
 
-  const addResonatorsQueryKey = trpc.resonators.get.queryKey();
-  const invalidateQueryAddResonators = () => {
-    queryClient.invalidateQueries({ queryKey: addResonatorsQueryKey });
+  const updateResonatorsQueryKey = trpc.resonators.unique.queryKey({
+    id: resonatorId,
+  });
+  const invalidateQueryUpdateResonators = () => {
+    queryClient.invalidateQueries({ queryKey: updateResonatorsQueryKey });
   };
-
   const updateResonatorMutationOpts = trpc.resonators.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -64,33 +69,26 @@ export function useResonatorForm(props: ResonatorFormProps) {
   });
   const updateResonatorMutation = useMutation(updateResonatorMutationOpts);
 
-  const updateResonatorsQueryKey = trpc.resonators.unique.queryKey({
-    id: resonatorId,
-  });
-  const invalidateQueryUpdateResonators = () => {
-    queryClient.invalidateQueries({ queryKey: updateResonatorsQueryKey });
-  };
-
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
     validators: { onSubmit: resonatorZodSchema },
-    onSubmit: async ({ value }) => {
+    onSubmit: ({ value }) => {
       if (isEditing) {
         if (!resonatorId) {
           toast.error("Este resonador no tiene ID definido.");
           return;
         }
 
-        await updateResonatorMutation.mutateAsync({
-          id: resonatorId,
-          ...value,
-        });
+        updateResonatorMutation.mutate({ id: resonatorId, ...value });
         return;
       }
 
-      await addResonatorMutation.mutateAsync(value);
+      addResonatorMutation.mutate(value);
     },
   });
+
+  const isPending =
+    addResonatorMutation.isPending || updateResonatorMutation.isPending;
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -104,5 +102,6 @@ export function useResonatorForm(props: ResonatorFormProps) {
     onSubmit,
     dialogOpen,
     setDialogOpen,
+    isPending,
   };
 }

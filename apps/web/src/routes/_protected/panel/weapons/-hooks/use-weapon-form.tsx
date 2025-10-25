@@ -28,6 +28,10 @@ export function useWeaponForm(props: WeaponFormProps) {
 
   const DEFAULT_VALUES: WeaponZodSchema = getDefaultWeaponValues(data);
 
+  const addWeaponsQueryKey = trpc.weapons.get.queryKey();
+  const invalidateQueryAddWeapons = () => {
+    queryClient.invalidateQueries({ queryKey: addWeaponsQueryKey });
+  };
   const addWeaponMutationOpts = trpc.weapons.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -44,11 +48,12 @@ export function useWeaponForm(props: WeaponFormProps) {
   });
   const addWeaponMutation = useMutation(addWeaponMutationOpts);
 
-  const addWeaponsQueryKey = trpc.weapons.get.queryKey();
-  const invalidateQueryAddWeapons = () => {
-    queryClient.invalidateQueries({ queryKey: addWeaponsQueryKey });
+  const updateWeaponsQueryKey = trpc.weapons.unique.queryKey({
+    id: weaponId,
+  });
+  const invalidateQueryUpdateWeapons = () => {
+    queryClient.invalidateQueries({ queryKey: updateWeaponsQueryKey });
   };
-
   const updateWeaponMutationOpts = trpc.weapons.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -65,30 +70,26 @@ export function useWeaponForm(props: WeaponFormProps) {
   });
   const updateWeaponMutation = useMutation(updateWeaponMutationOpts);
 
-  const updateWeaponsQueryKey = trpc.weapons.unique.queryKey({
-    id: weaponId,
-  });
-  const invalidateQueryUpdateWeapons = () => {
-    queryClient.invalidateQueries({ queryKey: updateWeaponsQueryKey });
-  };
-
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
     validators: { onSubmit: weaponZodSchema },
-    onSubmit: async ({ value }) => {
+    onSubmit: ({ value }) => {
       if (isEditing) {
         if (!weaponId) {
           toast.error("Este arma no tiene ID definido.");
           return;
         }
 
-        await updateWeaponMutation.mutateAsync({ id: weaponId, ...value });
+        updateWeaponMutation.mutate({ id: weaponId, ...value });
         return;
       }
 
-      await addWeaponMutation.mutateAsync(value);
+      addWeaponMutation.mutate(value);
     },
   });
+
+  const isPending =
+    updateWeaponMutation.isPending || addWeaponMutation.isPending;
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,5 +103,6 @@ export function useWeaponForm(props: WeaponFormProps) {
     onSubmit,
     dialogOpen,
     setDialogOpen,
+    isPending,
   };
 }

@@ -28,6 +28,10 @@ export function useMaterialForm(props: MaterialFormProps) {
 
   const DEFAULT_VALUES: MaterialZodSchema = getDefaultMaterialValues(data);
 
+  const addMaterialsQueryKey = trpc.materials.get.queryKey();
+  const invalidateQueryAddMaterials = () => {
+    queryClient.invalidateQueries({ queryKey: addMaterialsQueryKey });
+  };
   const addMaterialMutationOpts = trpc.materials.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -44,11 +48,12 @@ export function useMaterialForm(props: MaterialFormProps) {
   });
   const addMaterialMutation = useMutation(addMaterialMutationOpts);
 
-  const addMaterialsQueryKey = trpc.materials.get.queryKey();
-  const invalidateQueryAddMaterials = () => {
-    queryClient.invalidateQueries({ queryKey: addMaterialsQueryKey });
+  const updateMaterialsQueryKey = trpc.materials.unique.queryKey({
+    id: materialId,
+  });
+  const invalidateQueryUpdateMaterials = () => {
+    queryClient.invalidateQueries({ queryKey: updateMaterialsQueryKey });
   };
-
   const updateMaterialMutationOpts = trpc.materials.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
@@ -65,30 +70,26 @@ export function useMaterialForm(props: MaterialFormProps) {
   });
   const updateMaterialMutation = useMutation(updateMaterialMutationOpts);
 
-  const updateMaterialsQueryKey = trpc.materials.unique.queryKey({
-    id: materialId,
-  });
-  const invalidateQueryUpdateMaterials = () => {
-    queryClient.invalidateQueries({ queryKey: updateMaterialsQueryKey });
-  };
-
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
     validators: { onSubmit: materialZodSchema },
-    onSubmit: async ({ value }) => {
+    onSubmit: ({ value }) => {
       if (isEditing) {
         if (!materialId) {
           toast.error("Este material no tiene ID definido.");
           return;
         }
 
-        await updateMaterialMutation.mutateAsync({ id: materialId, ...value });
+        updateMaterialMutation.mutate({ id: materialId, ...value });
         return;
       }
 
-      await addMaterialMutation.mutateAsync(value);
+      addMaterialMutation.mutate(value);
     },
   });
+
+  const isPending =
+    updateMaterialMutation.isPending || addMaterialMutation.isPending;
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,5 +103,6 @@ export function useMaterialForm(props: MaterialFormProps) {
     onSubmit,
     dialogOpen,
     setDialogOpen,
+    isPending,
   };
 }
