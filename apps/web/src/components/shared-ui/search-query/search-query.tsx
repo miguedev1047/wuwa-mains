@@ -58,6 +58,7 @@ export function SearchQueryComponent({
       </InputGroupAddon>
       <InputGroupInput
         {...props}
+        aria-label={`${param}-search-input`}
         defaultValue={param}
         placeholder={placeholder}
         onChange={handleSearch}
