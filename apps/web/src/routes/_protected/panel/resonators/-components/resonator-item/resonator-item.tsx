@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { type ResonatorDatabaseSchema } from "@/routes/_protected/panel/resonators/-types";
 
 export function ResonatorItem(data: ResonatorDatabaseSchema) {
-  const { avatar_image, stars, element_type, id } = data;
+  const { avatar_image, name, stars, element_type, id } = data;
 
   const starsColor = getStarsLineColor(stars);
 
@@ -37,6 +37,7 @@ export function ResonatorItem(data: ResonatorDatabaseSchema) {
                 loading="lazy"
                 className="object-cover size-full "
                 src={avatar_image}
+                alt={name}
               />
             </figure>
           </Link>
@@ -48,7 +49,7 @@ export function ResonatorItem(data: ResonatorDatabaseSchema) {
         </div>
       </TooltipTrigger>
       <TooltipContent side="bottom">
-        <p>{data.name}</p>
+        <p>{name}</p>
       </TooltipContent>
     </Tooltip>
   );

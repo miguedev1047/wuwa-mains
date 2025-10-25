@@ -3,14 +3,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { type EchoesDatabaseSchema } from "@/routes/_protected/panel/echoes/-types";
 import { EchoActions } from "@/routes/_protected/panel/echoes/-components";
 import { Link } from "@tanstack/react-router";
 import { getStarsLineColor } from "@/utils/get-colors";
 import { cn } from "@/lib/utils";
-import { type EchoesDatabaseSchema } from "@/routes/_protected/panel/echoes/-types";
 
 export function EchoItem(data: EchoesDatabaseSchema) {
-  const { avatar_image, id } = data;
+  const { avatar_image, name, id } = data;
 
   const starsColor = getStarsLineColor("default");
 
@@ -36,6 +36,7 @@ export function EchoItem(data: EchoesDatabaseSchema) {
                 loading="lazy"
                 className="object-cover size-full "
                 src={avatar_image}
+                alt={name}
               />
             </figure>
           </Link>
@@ -43,7 +44,7 @@ export function EchoItem(data: EchoesDatabaseSchema) {
         </div>
       </TooltipTrigger>
       <TooltipContent side="bottom">
-        <p>{data.name}</p>
+        <p>{name}</p>
       </TooltipContent>
     </Tooltip>
   );

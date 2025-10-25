@@ -10,7 +10,7 @@ import { getStarsLineColor } from "@/utils/get-colors";
 import { cn } from "@/lib/utils";
 
 export function MaterialItem(data: MaterialDatabaseSchema) {
-  const { avatar_image, stars, id } = data;
+  const { avatar_image, name, stars, id } = data;
 
   const starsColor = getStarsLineColor(stars);
 
@@ -36,6 +36,7 @@ export function MaterialItem(data: MaterialDatabaseSchema) {
                 loading="lazy"
                 className="object-cover size-full "
                 src={avatar_image}
+                alt={name}
               />
             </figure>
           </Link>
@@ -43,7 +44,7 @@ export function MaterialItem(data: MaterialDatabaseSchema) {
         </div>
       </TooltipTrigger>
       <TooltipContent side="bottom">
-        <p>{data.name}</p>
+        <p>{name}</p>
       </TooltipContent>
     </Tooltip>
   );

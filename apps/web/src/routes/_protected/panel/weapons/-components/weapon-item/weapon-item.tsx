@@ -11,7 +11,7 @@ import { getStarsLineColor } from "@/utils/get-colors";
 import { cn } from "@/lib/utils";
 
 export function WeaponItem(data: WeaponDatabaseSchema) {
-  const { avatar_image, stars, weapon_type, id } = data;
+  const { avatar_image, name, stars, weapon_type, id } = data;
 
   const starsColor = getStarsLineColor(stars);
 
@@ -37,6 +37,7 @@ export function WeaponItem(data: WeaponDatabaseSchema) {
                 loading="lazy"
                 className="object-cover size-full "
                 src={avatar_image}
+                alt={name}
               />
             </figure>
           </Link>
@@ -48,7 +49,7 @@ export function WeaponItem(data: WeaponDatabaseSchema) {
         </div>
       </TooltipTrigger>
       <TooltipContent side="bottom">
-        <p>{data.name}</p>
+        <p>{name}</p>
       </TooltipContent>
     </Tooltip>
   );
