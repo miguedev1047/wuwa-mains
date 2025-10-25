@@ -2,6 +2,8 @@ import { ErrorState } from "@/components/state-ui/error";
 import { getSession } from "@/functions/get-session";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
+const REVALIDATE_TIME = 60 * 1000 * 5;
+
 export const Route = createFileRoute("/_protected")({
   errorComponent: () => (
     <ErrorState
@@ -16,4 +18,5 @@ export const Route = createFileRoute("/_protected")({
     }
     return { user: session.user, role: session.user.role };
   },
+  staleTime: REVALIDATE_TIME,
 });
