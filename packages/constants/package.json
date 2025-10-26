@@ -14,13 +14,10 @@
   "scripts": {
     "build": "tsdown"
   },
-  "devDependencies": {
-    "tsdown": "catalog:"
-  },
   "peerDependencies": {
     "typescript": "^5"
   },
-  "dependencies": {
-    "lucide-react": "^0.548.0"
+  "devDependencies": {
+    "tsdown": "catalog:"
   }
 }
