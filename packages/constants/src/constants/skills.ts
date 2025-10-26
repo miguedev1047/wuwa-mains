@@ -1,4 +1,4 @@
-export const SKILL_TYPE = [
+export const SELECT_SKILL_TYPE = [
   {
     label: "Circuito del Forte",
     value: "forte_circuit",
