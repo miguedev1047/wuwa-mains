@@ -1,6 +1,8 @@
 export {
   combatStylesRelations,
   resonatorRelations,
+  resonatorSkillsRelations,
+  resonatorSkills,
   combatStyles,
   resonators,
 } from "./schema/resonator-schema";
