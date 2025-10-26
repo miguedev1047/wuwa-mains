@@ -39,7 +39,10 @@ export const echoesSet = s.sqliteTable("echoesSet", {
     .text("id")
     .primaryKey()
     .$default(() => crypto.randomUUID()),
-  echo_id: s.text("echo_id").notNull(),
+  echo_id: s
+    .text("echo_id")
+    .references(() => echoes.id, { onDelete: "cascade" })
+    .notNull(),
   value: s.text("value", { enum: ECHO_SETS_ENUM }).notNull(),
   label: s.text("label").notNull(),
 });
