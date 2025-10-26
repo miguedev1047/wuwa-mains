@@ -45,7 +45,7 @@ export function FormSheet() {
   return (
     <Sheet open={data.open} onOpenChange={data.onOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button size="icon">
           {data.isEditing && <PencilIcon />}
           {!data.isEditing && <PlusIcon />}
         </Button>
