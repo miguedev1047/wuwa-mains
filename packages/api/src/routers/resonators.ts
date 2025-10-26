@@ -101,7 +101,7 @@ export const resonatorsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Resonador actualizado correctamente.",
+          message: "Resonador actualizado.",
           data: result,
         };
       } catch (error) {
@@ -145,7 +145,7 @@ export const resonatorsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Resonador creado con éxito!",
+          message: "Resonador agregado.",
           data: result,
         };
       } catch (error) {

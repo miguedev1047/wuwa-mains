@@ -65,7 +65,7 @@ export const weaponsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Arma actualizada correctamente.",
+          message: "Arma actualizada.",
           data: result,
         };
       } catch (error) {
@@ -90,7 +90,7 @@ export const weaponsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Arma creada con éxito!",
+          message: "Arma agregada.",
           data: result,
         };
       } catch (error) {

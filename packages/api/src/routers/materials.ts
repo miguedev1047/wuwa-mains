@@ -65,7 +65,7 @@ export const materialsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Material actualizado correctamente.",
+          message: "Material actualizado.",
           data: result,
         };
       } catch (error) {
@@ -90,7 +90,7 @@ export const materialsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Material agregado correctamente.",
+          message: "Material agregado.",
           data: result,
         };
       } catch (error) {
@@ -122,7 +122,7 @@ export const materialsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Material eliminado correctamente.",
+          message: "Material eliminado.",
           data: result,
         };
       } catch (error) {

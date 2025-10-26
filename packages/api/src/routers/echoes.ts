@@ -83,7 +83,7 @@ export const echoesRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Eco actualizado correctamente.",
+          message: "Eco actualizado.",
           data: result,
         };
       } catch (error) {
@@ -124,7 +124,7 @@ export const echoesRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Eco creado con éxito!",
+          message: "Eco agregado.",
           data: result,
         };
       } catch (error) {

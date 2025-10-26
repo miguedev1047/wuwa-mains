@@ -67,7 +67,7 @@ export const skillsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Habilidad del resonador actualizada correctamente.",
+          message: "Habilidad actualizada.",
           data: result,
         };
       } catch (error) {
@@ -93,7 +93,7 @@ export const skillsRouter = {
 
         return {
           code: "SUCCESS",
-          message: "Habilidad agregada con éxito!",
+          message: "Habilidad agregada.",
           data: result,
         };
       } catch (error) {
