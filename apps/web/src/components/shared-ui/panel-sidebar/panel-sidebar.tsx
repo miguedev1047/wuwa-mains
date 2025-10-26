@@ -29,7 +29,7 @@ import {
   useRouteContext,
   useRouter,
 } from "@tanstack/react-router";
-import { PANEL_ROUTES } from "@wuwa-mains/constants/constants/panel-routes";
+import { PANEL_ROUTES } from "@/components/shared-ui/panel-sidebar/panel-routes";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronsUpDown, FlameIcon, LogOut } from "lucide-react";
