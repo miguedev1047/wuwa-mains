@@ -30,7 +30,8 @@ export const resonatorSkillZodSchema = z.object({
     .describe("Descripción estructurada de la habilidad en formato JSON."),
 
   resonator_id: z
-    .uuid({ message: "El ID del resonador debe ser un UUID válido." })
+    .string()
+    .min(1, { error: "El ID del resonador debe ser un UUID válido." })
     .describe("Identificador del resonador al que pertenece esta habilidad."),
 
   createdAt: z
