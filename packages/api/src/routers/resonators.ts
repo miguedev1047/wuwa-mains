@@ -12,10 +12,22 @@ import { eq } from "drizzle-orm";
 export const resonatorsRouter = {
   get: publicProcedure.query(async ({ ctx }) => {
     try {
-      const resonators = await ctx.db.query.resonators.findMany({
-        with: { combat_styles: true },
+      const resonators = await ctx.db.query.resonators.findMany();
+      return resonators;
+    } catch (error) {
+      console.error("Error getting resonators:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Ha ocurrido un error al obtener los resonadores.",
+        cause: error,
       });
-
+    }
+  }),
+  full: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const resonators = await ctx.db.query.resonators.findMany({
+        with: { combat_styles: true, skills: true },
+      });
       return resonators;
     } catch (error) {
       console.error("Error getting resonators:", error);
@@ -32,7 +44,7 @@ export const resonatorsRouter = {
 
       const resonator = await ctx.db.query.resonators.findFirst({
         where: eq(resonators.id, id),
-        with: { combat_styles: true },
+        with: { combat_styles: true, skills: true },
       });
 
       if (!resonator) {
