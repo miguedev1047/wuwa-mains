@@ -1,10 +1,10 @@
 import { reactStartCookies } from "better-auth/react-start";
-import { betterAuth, type BetterAuthOptions } from "better-auth";
+import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@wuwa-mains/db";
 import * as schema from "@wuwa-mains/db/schema/auth";
 
-export const auth = betterAuth<BetterAuthOptions>({
+export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "sqlite",
     schema: schema,
