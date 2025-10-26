@@ -1,4 +1,4 @@
-import { PANEL_ROUTES } from "@wuwa-mains/constants";
+import { PANEL_ROUTES } from "@/components/shared-ui/panel-sidebar/panel-routes";
 import { useLocation } from "@tanstack/react-router";
 
 export function useFindRoute() {
