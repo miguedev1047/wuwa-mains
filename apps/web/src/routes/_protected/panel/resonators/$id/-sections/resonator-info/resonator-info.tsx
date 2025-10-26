@@ -5,8 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import { Separator } from "@/components/ui/separator";
 import { StarsList } from "@/components/shared-ui/stars-list";
 import { TiptapPreview } from "@/components/shared-ui/tiptap-preview";
@@ -15,13 +13,10 @@ import { WeaponIcon } from "@/components/icons-ui/weapon-icon";
 import { SquareBox } from "@/components/shared-ui/square-box";
 import { EditResonatorForm } from "@/routes/_protected/panel/resonators/-components";
 import { Badge } from "@/components/ui/badge";
-import { useTRPC } from "@/trpc/root";
+import { useGetResonator } from "@/routes/_protected/panel/resonators/$id/-hooks";
 
 export function ResonatorInfo() {
-  const { id } = useParams({ from: "/_protected/panel/resonators/$id/" });
-  const trpc = useTRPC();
-  const resonatorQueryOpts = trpc.resonators.unique.queryOptions({ id });
-  const { data: resonator } = useSuspenseQuery(resonatorQueryOpts);
+  const resonator = useGetResonator();
 
   return (
     <Card>
