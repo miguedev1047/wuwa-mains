@@ -4,6 +4,7 @@ import {
   SELECT_ELEMENT_TYPE,
   SELECT_MATERIAL_TYPE,
   SELECT_ECHO_SET,
+  SELECT_RESONATOR_SKILL_TYPE,
 } from "@wuwa-mains/constants";
 
 const UNDEFINED_GENERAL_OPTS = {
@@ -53,4 +54,12 @@ export function getEchoSet(echoSet: string) {
   const ECHO_SET = SELECT_ECHO_SET.find((set) => set.value === echoSet);
   if (!ECHO_SET) return UNDEFINED_ECHOES_OPTS;
   return ECHO_SET;
+}
+
+export function getResonatorSkillType(skillType: string) {
+  const SKILL_TYPE = SELECT_RESONATOR_SKILL_TYPE.find(
+    (type) => type.value === skillType,
+  );
+  if (!SKILL_TYPE) return UNDEFINED_GENERAL_OPTS;
+  return SKILL_TYPE;
 }
