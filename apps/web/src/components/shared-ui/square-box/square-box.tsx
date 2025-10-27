@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const squareBoxVariants = cva(
-  "bg-accent rounded-(--radius) border p-0.5 relative overflow-hidden",
+  "bg-accent-foreground dark:bg-accent rounded-(--radius) border p-0.5 relative overflow-hidden",
   {
     variants: {
       size: {
