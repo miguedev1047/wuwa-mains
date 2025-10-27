@@ -10,7 +10,7 @@ import { useParams } from "@tanstack/react-router";
 import { EditEchoForm } from "@/routes/_protected/panel/echoes/-components";
 import { SquareBox } from "@/components/shared-ui/square-box";
 import { Separator } from "@/components/ui/separator";
-import { TiptapPreview } from "@/components/shared-ui/tiptap-preview";
+import { TiptapPreview } from "@/components/shared-ui/editor";
 
 export function EchoInfo() {
   const { id } = useParams({ from: "/_protected/panel/echoes/$id/" });
@@ -59,12 +59,9 @@ export function EchoInfo() {
             <CardContent className="h-full">
               <div className="space-y-6 flex flex-col justify-between h-full">
                 <EchoSetBadges />
-                <div>
+                <div className="space-y-2">
                   <h2 className="text-xl font-bold">Descripción</h2>
-                  <TiptapPreview
-                    content={echoes.description}
-                    className="text-muted-foreground"
-                  />
+                  <TiptapPreview content={echoes.description} />
                 </div>
               </div>
             </CardContent>

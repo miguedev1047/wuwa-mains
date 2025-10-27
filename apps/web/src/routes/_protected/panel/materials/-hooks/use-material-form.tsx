@@ -4,7 +4,7 @@ import {
 } from "@wuwa-mains/schemas/zod/material-schema";
 import { type MaterialFormProps } from "@/routes/_protected/panel/materials/-types";
 
-import { getDefaultMaterialValues } from "@/lib/defaut-values";
+import { getDefaultMaterialValues } from "@/helpers/defaut-values";
 import { useAppForm } from "@/hooks/use-form";
 import { useTRPC } from "@/trpc/root";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

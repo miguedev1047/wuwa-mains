@@ -4,7 +4,7 @@ import {
 } from "@wuwa-mains/schemas/zod/weapon-schema";
 import { type WeaponFormProps } from "@/routes/_protected/panel/weapons/-types";
 
-import { getDefaultWeaponValues } from "@/lib/defaut-values";
+import { getDefaultWeaponValues } from "@/helpers/defaut-values";
 import { useAppForm } from "@/hooks/use-form";
 import { useTRPC } from "@/trpc/root";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

@@ -5,7 +5,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { TiptapPreview } from "@/components/shared-ui/tiptap-preview";
+import { TiptapPreview } from "@/components/shared-ui/editor";
 import { StarsList } from "@/components/shared-ui/stars-list";
 import { getMainStat } from "@/utils/general-utils";
 import { useTRPC } from "@/trpc/root";
@@ -60,19 +60,13 @@ export function WeaponInfo() {
             <CardContent className="h-full">
               <div className="space-y-6 flex flex-col justify-end h-full">
                 <div className="space-y-5">
-                  <div>
-                    <h2 className="text-xl font-bold">Pasiva</h2>
-                    <TiptapPreview
-                      content={weapon.passive}
-                      className="text-muted-foreground"
-                    />
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold">Pasiva</h2>
+                    <TiptapPreview content={weapon.passive} />
                   </div>
-                  <div>
+                  <div className="space-y-2">
                     <h2 className="text-xl font-bold">Descripción</h2>
-                    <TiptapPreview
-                      content={weapon.description}
-                      className="text-muted-foreground"
-                    />
+                    <TiptapPreview content={weapon.description} />
                   </div>
                 </div>
               </div>

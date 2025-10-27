@@ -3,7 +3,7 @@ import {
   type ResonatorZodSchema,
 } from "@wuwa-mains/schemas/zod/resonator-schema";
 import { type ResonatorFormProps } from "@/routes/_protected/panel/resonators/-types";
-import { getDefaultResonatorValues } from "@/lib/defaut-values";
+import { getDefaultResonatorValues } from "@/helpers/defaut-values";
 import { useAppForm } from "@/hooks/use-form";
 import { useTRPC } from "@/trpc/root";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

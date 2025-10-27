@@ -4,7 +4,7 @@ import {
 } from "@wuwa-mains/schemas/zod/echo-schema";
 import { type EchoesFormProps } from "@/routes/_protected/panel/echoes/-types";
 
-import { getDefaultEchoValues } from "@/lib/defaut-values";
+import { getDefaultEchoValues } from "@/helpers/defaut-values";
 import { useAppForm } from "@/hooks/use-form";
 import { useTRPC } from "@/trpc/root";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

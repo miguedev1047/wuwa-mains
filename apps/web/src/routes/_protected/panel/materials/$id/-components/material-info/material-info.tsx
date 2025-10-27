@@ -8,7 +8,7 @@ import { EditMaterialForm } from "@/routes/_protected/panel/materials/-component
 import { SquareBox } from "@/components/shared-ui/square-box";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { TiptapPreview } from "@/components/shared-ui/tiptap-preview";
+import { TiptapPreview } from "@/components/shared-ui/editor";
 
 export function MaterialInfo() {
   const { id } = useParams({ from: "/_protected/panel/materials/$id/" });
@@ -59,12 +59,9 @@ export function MaterialInfo() {
             <Separator />
             <CardContent className="h-full">
               <div className="space-y-6 flex flex-col justify-end h-full">
-                <div>
+                <div className="space-y-2">
                   <h2 className="text-xl font-bold">Descripción</h2>
-                  <TiptapPreview
-                    content={material.description}
-                    className="text-muted-foreground"
-                  />
+                  <TiptapPreview content={material.description} />
                 </div>
               </div>
             </CardContent>

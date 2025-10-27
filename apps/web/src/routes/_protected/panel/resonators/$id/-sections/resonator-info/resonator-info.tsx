@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { StarsList } from "@/components/shared-ui/stars-list";
-import { TiptapPreview } from "@/components/shared-ui/tiptap-preview";
+import { TiptapPreview } from "@/components/shared-ui/editor";
 import { ElementIcon } from "@/components/icons-ui/element-icon";
 import { WeaponIcon } from "@/components/icons-ui/weapon-icon";
 import { SquareBox } from "@/components/shared-ui/square-box";
@@ -78,7 +78,7 @@ export function ResonatorInfo() {
                     </li>
                   ))}
                 </ol>
-                <div>
+                <div className="space-y-2">
                   <h2 className="text-xl font-bold">Descripción</h2>
                   <TiptapPreview
                     content={resonator.description}
