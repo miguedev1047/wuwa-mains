@@ -1,4 +1,4 @@
-import type { JSONContent } from "@/components/kibo-ui/editor";
+import type { JSONContent } from "@tiptap/core";
 
 import {
   Field,
@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { InputNumber } from "@/components/ui/input-number";
 import { useFieldContext, useFormContext } from "@/hooks/use-form";
 import { useId } from "react";
-import { TiptapEditor } from "@/components/shared-ui/tiptap-editor";
+import { TiptapEditor } from "@/components/shared-ui/editor";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
@@ -56,7 +56,13 @@ export function TextField({
         onBlur={field.handleBlur}
       />
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -89,7 +95,13 @@ export function UrlImageField({
         onChange={field.handleChange}
       />
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -124,7 +136,13 @@ export function NumberField({
         onBlur={field.handleBlur}
       />
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -180,7 +198,13 @@ export function SelectField({
         </SelectContent>
       </Select>
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -222,7 +246,13 @@ export function MultiSelectField({
         }
       />
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -251,7 +281,13 @@ export function EditorField({
         onChange={field.handleChange}
       />
       <FieldDescription>{description}</FieldDescription>
-      {showError && <ErrorField />}
+      {showError && (
+        <FieldError>
+          {!field.state.meta.isValid && (
+            <p>{field.state.meta.errors[0].message}</p>
+          )}
+        </FieldError>
+      )}
     </Field>
   );
 }
@@ -276,7 +312,13 @@ export function SwitchField({
       <FieldContent>
         <FieldLabel htmlFor={`SWITCH-${id}`}>{label}</FieldLabel>
         <FieldDescription>{description}</FieldDescription>
-        {showError && <ErrorField />}
+        {showError && (
+          <FieldError>
+            {!field.state.meta.isValid && (
+              <p>{field.state.meta.errors[0].message}</p>
+            )}
+          </FieldError>
+        )}
       </FieldContent>
       <Switch
         {...switchProps}
