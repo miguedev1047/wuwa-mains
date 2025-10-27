@@ -11,7 +11,7 @@ export const materialZodSchema = z.object({
     .any()
     .refine(
       (val) => typeof val === "object" && val !== null && !Array.isArray(val),
-      { error: "La descripción debe ser un objeto JSON válido." },
+      { error: "La descripción es requerida." },
     )
     .refine((val) => Object.keys(val ?? {}).length > 0, {
       error: "La descripción no puede estar vacía.",

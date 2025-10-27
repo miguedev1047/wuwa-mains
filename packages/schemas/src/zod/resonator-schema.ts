@@ -1,5 +1,6 @@
 import {
   ELEMENT_TYPE_ENUM,
+  RESONATOR_SKILL_TYPE_ENUM,
   STARS_ENUM,
   WEAPON_TYPE_ENUM,
 } from "@wuwa-mains/constants";
@@ -21,7 +22,7 @@ export const resonatorZodSchema = z.object({
     .any()
     .refine(
       (val) => typeof val === "object" && val !== null && !Array.isArray(val),
-      { error: "La descripción debe ser un objeto JSON válido." },
+      { error: "La descripción es requerida." },
     )
     .refine((val) => Object.keys(val ?? {}).length > 0, {
       error: "La descripción no puede estar vacía.",
@@ -75,3 +76,49 @@ export const resonatorZodSchema = z.object({
 });
 
 export type ResonatorZodSchema = z.infer<typeof resonatorZodSchema>;
+
+export const resonatorSkillZodSchema = z.object({
+  id: z.string().optional(),
+
+  name: z
+    .string()
+    .min(2, { error: "El nombre debe tener al menos 2 caracteres." })
+    .max(50, { error: "El nombre no puede superar los 50 caracteres." })
+    .describe("Nombre de la habilidad del resonador."),
+
+  skill_image: z
+    .url({ error: "La URL de la imagen de la habilidad no es válida." })
+    .describe("Imagen representativa de la habilidad."),
+
+  skill_type: z
+    .enum(RESONATOR_SKILL_TYPE_ENUM, {
+      error: "El tipo de habilidad no es válido.",
+    })
+    .describe("Tipo de habilidad (Básica, Resonancia, Final, etc.)."),
+
+  description: z
+    .any()
+    .refine(
+      (val) => typeof val === "object" && val !== null && !Array.isArray(val),
+      { error: "La descripción es requerida." },
+    )
+    .refine((val) => Object.keys(val ?? {}).length > 0, {
+      error: "La descripción no puede estar vacía.",
+    })
+    .describe("Descripción detallada de la habilidad."),
+
+  resonator_id: z
+    .string()
+    .min(1, { error: "El ID del resonador debe ser un UUID válido." })
+    .describe("Identificador del resonador al que pertenece esta habilidad."),
+
+  createdAt: z
+    .date()
+    .describe("Fecha de creación del registro en milisegundos."),
+
+  updatedAt: z
+    .date()
+    .describe("Última fecha de actualización del registro en milisegundos."),
+});
+
+export type ResonatorSkillZodSchema = z.infer<typeof resonatorSkillZodSchema>;
