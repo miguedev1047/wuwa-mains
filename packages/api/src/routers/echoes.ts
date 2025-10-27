@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { echoes, echoesSet } from "@wuwa-mains/db/schema/echo-schema";
 import { echoZodSchema } from "@wuwa-mains/schemas/zod/echo-schema";
 import { echoSetsTransformOpts } from "../helpers/option-transform";
+import { MIN_LENGTH } from "@wuwa-mains/constants";
 
 export const echoesRouter = {
   get: publicProcedure.query(async ({ ctx }) => {
@@ -68,9 +69,9 @@ export const echoesRouter = {
             });
           }
 
-          await tx.delete(echoesSet).where(eq(echoesSet.id, id));
+          await tx.delete(echoesSet).where(eq(echoesSet.echo_id, id));
 
-          if (sets?.length) {
+          if (sets.length > MIN_LENGTH) {
             const newStyles = echoSetsTransformOpts({
               echoSets: sets,
               echoId: id,
