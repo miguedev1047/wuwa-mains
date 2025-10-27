@@ -1,6 +1,9 @@
+import type {
+  ResonatorZodSchema,
+  ResonatorSkillZodSchema,
+} from "@wuwa-mains/schemas/zod/resonator-schema";
 import type { EchoZodSchema } from "@wuwa-mains/schemas/zod/echo-schema";
 import type { MaterialZodSchema } from "@wuwa-mains/schemas/zod/material-schema";
-import type { ResonatorZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
 import type { WeaponZodSchema } from "@wuwa-mains/schemas/zod/weapon-schema";
 
 export function getDefaultResonatorValues(
@@ -77,4 +80,22 @@ export function getDefaultEchoValues(data?: EchoZodSchema): EchoZodSchema {
     createdAt: isEditing ? data!.createdAt : new Date(),
     updatedAt: isEditing ? data!.updatedAt : new Date(),
   } satisfies EchoZodSchema;
+}
+
+export function getDefaultResonatorSkillValues(
+  resonatorId: string,
+  data?: ResonatorSkillZodSchema,
+) {
+  const isEditing = !!data;
+
+  return {
+    id: isEditing ? data!.id : crypto.randomUUID(),
+    name: isEditing ? data!.name : "",
+    description: isEditing ? data!.description : "",
+    skill_image: isEditing ? data!.skill_image : "",
+    resonator_id: isEditing ? data!.resonator_id : resonatorId,
+    skill_type: isEditing ? data!.skill_type : "none",
+    createdAt: isEditing ? data!.createdAt : new Date(),
+    updatedAt: isEditing ? data!.updatedAt : new Date(),
+  } satisfies ResonatorSkillZodSchema;
 }
