@@ -6,4 +6,4 @@ export * from "./constants/stars";
 export * from "./constants/weapon";
 export * from "./constants/echo";
 export * from "./constants/panel-routes";
-export * from "./constants/skills";
+export * from "./constants/resonators";
