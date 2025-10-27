@@ -1,7 +1,8 @@
 import {
-  ResonatorBreadcrumb,
+  ResonatorSkills,
   ResonatorInfo,
-} from "@/routes/_protected/panel/resonators/$id/-components";
+} from "@/routes/_protected/panel/resonators/$id/-sections";
+import { ResonatorBreadcrumb } from "@/routes/_protected/panel/resonators/$id/-components";
 import { ErrorState } from "@/components/state-ui/error";
 import { LoaderState } from "@/components/state-ui/loader";
 import { createFileRoute } from "@tanstack/react-router";
@@ -33,6 +34,7 @@ function RouteComponent() {
     <main className="space-y-5">
       <ResonatorBreadcrumb />
       <ResonatorInfo />
+      <ResonatorSkills />
     </main>
   );
 }
