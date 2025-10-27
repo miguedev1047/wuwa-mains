@@ -47,8 +47,8 @@ export const RESONATOR_SKILL_TYPE_ENUM = [
 export const ORDER_ROSONATORS_SKILLS = [
   { value: "normal_attack", order: 0 },
   { value: "resonance_skill", order: 1 },
-  { value: "resonance_liberation", order: 2 },
-  { value: "forte_circuit", order: 3 },
+  { value: "forte_circuit", order: 2 },
+  { value: "resonance_liberation", order: 3 },
   { value: "intro_skill", order: 4 },
   { value: "outro_skill", order: 5 },
   { value: "inherent_skill", order: [6, 7, 8] },
