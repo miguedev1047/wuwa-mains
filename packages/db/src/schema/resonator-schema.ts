@@ -7,7 +7,7 @@ import {
   STARS_ENUM,
   ELEMENT_TYPE_ENUM,
   COMBAT_STYLES_ENUM,
-  SKILL_TYPE_ENUM,
+  RESONATOR_SKILL_TYPE_ENUM,
 } from "@wuwa-mains/constants";
 import { relations, sql } from "drizzle-orm";
 
@@ -69,7 +69,9 @@ export const resonatorSkills = s.sqliteTable("resonator_skills", {
     .notNull(),
   name: s.text("name").notNull(),
   skill_image: s.text("skill_image").notNull(),
-  skill_type: s.text("skill_type", { enum: SKILL_TYPE_ENUM }).notNull(),
+  skill_type: s
+    .text("skill_type", { enum: RESONATOR_SKILL_TYPE_ENUM })
+    .notNull(),
   description: s
     .text("description", { mode: "json" })
     .notNull()

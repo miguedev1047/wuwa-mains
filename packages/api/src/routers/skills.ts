@@ -1,7 +1,7 @@
 import { resonatorSkills } from "@wuwa-mains/db/schema/resonator-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure, publicProcedure } from "../index";
-import { resonatorSkillZodSchema } from "@wuwa-mains/schemas/zod/skill-schema";
+import { resonatorSkillZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
 import { idZodSchema } from "@wuwa-mains/schemas/zod/id-schema";
 import { eq } from "drizzle-orm";
 
@@ -47,23 +47,23 @@ export const skillsRouter = {
     }
   }),
   update: protectedProcedure
-    .input(resonatorSkillZodSchema.extend(idZodSchema.shape))
+    .input(resonatorSkillZodSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const { id, ...resonatorSkillData } = input;
+
+        if (!id) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Habilidad del resonador no encontrada.",
+          });
+        }
 
         const [result] = await ctx.db
           .update(resonatorSkills)
           .set(resonatorSkillData)
           .where(eq(resonatorSkills.id, id))
           .returning();
-
-        if (!result) {
-          throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Habilidad del resonador no encontrada.",
-          });
-        }
 
         return {
           code: "SUCCESS",

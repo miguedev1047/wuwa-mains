@@ -7,6 +7,7 @@ export const NONE = "";
 export const DEFAULT_IMAGE = "https://placehold.co/600?text=Wuwa+Mains";
 
 export const EMPTY_LIST = 0;
+export const MIN_LENGTH = 0;
 
 export const DISCORD_USER = "cartethyia2";
 export const CONTACT_EMAIL = "miguelangeljimenez1047@gmail.com";
