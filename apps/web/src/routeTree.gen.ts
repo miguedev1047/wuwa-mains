@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProtectedRouteRouteImport } from './routes/_protected/route'
 import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TestIndexRouteImport } from './routes/test/index'
 import { Route as ProtectedPanelRouteRouteImport } from './routes/_protected/panel/route'
 import { Route as AuthedLoginIndexRouteImport } from './routes/_authed/login/index'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc/$'
@@ -44,11 +43,6 @@ const AuthedRouteRoute = AuthedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TestIndexRoute = TestIndexRouteImport.update({
-  id: '/test/',
-  path: '/test/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedPanelRouteRoute = ProtectedPanelRouteRouteImport.update({
@@ -164,7 +158,6 @@ const ProtectedPanelAdminConfigIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/panel': typeof ProtectedPanelRouteRouteWithChildren
-  '/test': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/login': typeof AuthedLoginIndexRoute
@@ -187,7 +180,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/panel': typeof ProtectedPanelRouteRouteWithChildren
-  '/test': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/login': typeof AuthedLoginIndexRoute
@@ -213,7 +205,6 @@ export interface FileRoutesById {
   '/_authed': typeof AuthedRouteRouteWithChildren
   '/_protected': typeof ProtectedRouteRouteWithChildren
   '/_protected/panel': typeof ProtectedPanelRouteRouteWithChildren
-  '/test/': typeof TestIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/_authed/login/': typeof AuthedLoginIndexRoute
@@ -238,7 +229,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/panel'
-    | '/test'
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/login'
@@ -261,7 +251,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/panel'
-    | '/test'
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/login'
@@ -286,7 +275,6 @@ export interface FileRouteTypes {
     | '/_authed'
     | '/_protected'
     | '/_protected/panel'
-    | '/test/'
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/_authed/login/'
@@ -311,7 +299,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
   ProtectedRouteRoute: typeof ProtectedRouteRouteWithChildren
-  TestIndexRoute: typeof TestIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
 }
@@ -337,13 +324,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/test/': {
-      id: '/test/'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof TestIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_protected/panel': {
@@ -549,7 +529,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRouteRoute: AuthedRouteRouteWithChildren,
   ProtectedRouteRoute: ProtectedRouteRouteWithChildren,
-  TestIndexRoute: TestIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
 }
