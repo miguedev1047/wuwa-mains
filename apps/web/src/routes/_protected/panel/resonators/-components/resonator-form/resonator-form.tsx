@@ -93,7 +93,7 @@ export function AddResonatorForm(props: ResonatorFormProps) {
               <form.AppField name="weapon_type">
                 {(field) => (
                   <field.SelectField
-                    label="Tipo de resonador"
+                    label="Arma del resonador"
                     placeholder="Selecciona un arma"
                     description="Ingresa el tipo de arma del resonador."
                     items={SELECT_WEAPON_TYPE}
