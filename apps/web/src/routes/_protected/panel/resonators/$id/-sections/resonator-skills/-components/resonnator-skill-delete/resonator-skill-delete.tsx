@@ -56,7 +56,7 @@ export function ResonatorSkillDelete(props: ResonatorSkillDeleteProps) {
     <DestroyItem
       title="Eliminar habilidad"
       description="¿Estas seguro que quieres eliminar esta habilidad? Esta acción es
-    irreversoble."
+    irreversible."
       onDelete={onResonatorSkillDelete}
       disabled={isPending}
     />
