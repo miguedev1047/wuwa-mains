@@ -5,6 +5,7 @@ import {
   SELECT_MATERIAL_TYPE,
   SELECT_ECHO_SET,
   SELECT_RESONATOR_SKILL_TYPE,
+  SELECT_STAT_TYPE,
 } from "@wuwa-mains/constants";
 
 const UNDEFINED_GENERAL_OPTS = {
@@ -62,4 +63,10 @@ export function getResonatorSkillType(skillType: string) {
   );
   if (!SKILL_TYPE) return UNDEFINED_GENERAL_OPTS;
   return SKILL_TYPE;
+}
+
+export function getResonatorBonusType(bonusType: string) {
+  const BONUS_TYPE = SELECT_STAT_TYPE.find((type) => type.value === bonusType);
+  if (!BONUS_TYPE) return UNDEFINED_GENERAL_OPTS;
+  return BONUS_TYPE;
 }
