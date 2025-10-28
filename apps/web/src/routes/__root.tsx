@@ -63,7 +63,7 @@ function RootDocument() {
           <NuqsAdapter>
             <Outlet />
           </NuqsAdapter>
-          <Toaster />
+          <Toaster position="bottom-left" />
         </ThemeProvider>
         <Devtools />
         <Scripts />
