@@ -7,3 +7,4 @@ export * from "./constants/weapon";
 export * from "./constants/echo";
 export * from "./constants/panel-routes";
 export * from "./constants/resonators";
+export * from "./constants/stats";
