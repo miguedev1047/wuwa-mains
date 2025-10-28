@@ -2,6 +2,7 @@ import {
   ELEMENT_TYPE_ENUM,
   RESONATOR_SKILL_TYPE_ENUM,
   STARS_ENUM,
+  STATS_TYPE_ENUM,
   WEAPON_TYPE_ENUM,
 } from "@wuwa-mains/constants";
 import { z } from "zod";
@@ -122,3 +123,30 @@ export const resonatorSkillZodSchema = z.object({
 });
 
 export type ResonatorSkillZodSchema = z.infer<typeof resonatorSkillZodSchema>;
+
+export const resonatorBonusZodSchema = z.object({
+  id: z.string().optional(),
+
+  stat_type: z
+    .enum(STATS_TYPE_ENUM, {
+      error: "El tipo de bono no es válido.",
+    })
+    .describe("Tipo de bono (Vida, Ataque, Defensa, etc.)."),
+
+  bonus_value: z.number().min(0).describe("Valor del bono."),
+
+  resonator_id: z
+    .string()
+    .min(1, { error: "El ID del resonador debe ser un UUID válido." })
+    .describe("Identificador del resonador al que pertenece este bono."),
+
+  createdAt: z
+    .date()
+    .describe("Fecha de creación del registro en milisegundos."),
+
+  updatedAt: z
+    .date()
+    .describe("Última fecha de actualización en milisegundos."),
+});
+
+export type ResonatorBonusZodSchema = z.infer<typeof resonatorBonusZodSchema>;
