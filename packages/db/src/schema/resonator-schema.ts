@@ -8,6 +8,7 @@ import {
   ELEMENT_TYPE_ENUM,
   COMBAT_STYLES_ENUM,
   RESONATOR_SKILL_TYPE_ENUM,
+  STATS_TYPE_ENUM,
 } from "@wuwa-mains/constants";
 import { relations, sql } from "drizzle-orm";
 
@@ -87,11 +88,34 @@ export const resonatorSkills = s.sqliteTable("resonator_skills", {
     .notNull(),
 });
 
+export const resonatorBonus = s.sqliteTable("resonator_bonus", {
+  id: s
+    .text("id")
+    .primaryKey()
+    .$default(() => crypto.randomUUID()),
+  resonator_id: s
+    .text("resonator_id")
+    .references(() => resonators.id, { onDelete: "cascade" })
+    .notNull(),
+  stat_type: s.text("stat_type", { enum: STATS_TYPE_ENUM }).notNull(),
+  bonus_value: s.integer("bonus_value").default(0).notNull(),
+  createdAt: s
+    .integer("created_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .notNull(),
+  updatedAt: s
+    .integer("updated_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
 // RELATIONS - RESONATORS //
 
 export const resonatorRelations = relations(resonators, ({ many }) => ({
   combat_styles: many(combatStyles),
   skills: many(resonatorSkills),
+  bonus: many(resonatorBonus),
 }));
 
 export const combatStylesRelations = relations(combatStyles, ({ one }) => ({
@@ -110,3 +134,10 @@ export const resonatorSkillsRelations = relations(
     }),
   }),
 );
+
+export const resonatorBonusRelations = relations(resonatorBonus, ({ one }) => ({
+  resonator: one(resonators, {
+    fields: [resonatorBonus.resonator_id],
+    references: [resonators.id],
+  }),
+}));

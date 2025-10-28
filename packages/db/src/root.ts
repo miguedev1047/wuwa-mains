@@ -2,6 +2,8 @@ export {
   combatStylesRelations,
   resonatorRelations,
   resonatorSkillsRelations,
+  resonatorBonusRelations,
+  resonatorBonus,
   resonatorSkills,
   combatStyles,
   resonators,
