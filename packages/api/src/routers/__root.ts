@@ -1,4 +1,5 @@
 import { router } from "../index";
+import { bonusRouter } from "./bonus";
 import { echoesRouter } from "./echoes";
 import { materialsRouter } from "./materials";
 import { resonatorsRouter } from "./resonators";
@@ -11,6 +12,7 @@ export const appRouter = router({
   skills: skillsRouter,
   materials: materialsRouter,
   echoes: echoesRouter,
+  bonus: bonusRouter,
 });
 
 export type AppRouter = typeof appRouter;

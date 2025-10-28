@@ -26,7 +26,7 @@ export const resonatorsRouter = {
   full: publicProcedure.query(async ({ ctx }) => {
     try {
       const resonators = await ctx.db.query.resonators.findMany({
-        with: { combat_styles: true, skills: true },
+        with: { combat_styles: true, skills: true, bonus: true },
       });
       return resonators;
     } catch (error) {
@@ -44,7 +44,7 @@ export const resonatorsRouter = {
 
       const resonator = await ctx.db.query.resonators.findFirst({
         where: eq(resonators.id, id),
-        with: { combat_styles: true, skills: true },
+        with: { combat_styles: true, skills: true, bonus: true },
       });
 
       if (!resonator) {
