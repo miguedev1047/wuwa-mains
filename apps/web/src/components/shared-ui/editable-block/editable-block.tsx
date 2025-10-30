@@ -87,9 +87,14 @@ export function EditableBlockEmpty({
 
 export function EditableBlockItem({
   children,
+  className,
   ...props
 }: React.ComponentProps<typeof Card>) {
-  return <Card {...props}>{children}</Card>;
+  return (
+    <Card className={cn("bg-input/30", className)} {...props}>
+      {children}
+    </Card>
+  );
 }
 
 export function EditableBlockMedia({
