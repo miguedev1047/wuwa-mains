@@ -23,6 +23,7 @@ export function useEditChainResonance(data: ChainResonanceZodSchema) {
   const queryClient = useQueryClient();
 
   const DEFAULT_VALUES: ChainResonanceZodSchema = {
+    id: data.id,
     chain_resonance_image: data.chain_resonance_image,
     resonator_id: resonatorId,
     description: data.description,
@@ -59,10 +60,7 @@ export function useEditChainResonance(data: ChainResonanceZodSchema) {
     defaultValues: DEFAULT_VALUES,
     validators: { onSubmit: chainResonanceZodSchema },
     onSubmit: ({ value }) => {
-      if (!data) {
-        return toast.error("No hay datos para actualizar.");
-      }
-      addMutation.mutate({ id: data.id, ...value });
+      addMutation.mutate({ ...value });
     },
   });
 
