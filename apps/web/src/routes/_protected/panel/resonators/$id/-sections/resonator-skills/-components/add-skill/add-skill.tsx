@@ -1,18 +1,10 @@
 import { SELECT_RESONATOR_SKILL_TYPE } from "@wuwa-mains/constants";
-import { useResonatorSkillForm } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-skills/-hooks";
-import { PencilIcon, PlusIcon } from "lucide-react";
-import type { ResonatorSkillFormProps } from "@/routes/_protected/panel/resonators/-types";
+import { useAddSkill } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-skills/-hooks";
+import { PlusIcon } from "lucide-react";
 
-export function ResonatorSkillForm(props: ResonatorSkillFormProps) {
-  const {
-    form,
-    formId,
-    isEditing,
-    onSubmit,
-    dialogOpen,
-    setDialogOpen,
-    isPending,
-  } = useResonatorSkillForm(props);
+export function AddSkill() {
+  const { dialogOpen, form, formId, isPending, onSubmit, setDialogOpen } =
+    useAddSkill();
 
   return (
     <form.AppForm>
@@ -20,16 +12,11 @@ export function ResonatorSkillForm(props: ResonatorSkillFormProps) {
         <form.FormSheetRoot
           open={dialogOpen}
           onOpenChange={setDialogOpen}
-          isEditing={isEditing}
           renderHeader={
             <form.FormSheetHeader>
-              <form.FormSheetTitle>
-                {isEditing ? "Editar habilidad" : "Nueva habilidad"}
-              </form.FormSheetTitle>
+              <form.FormSheetTitle>Nueva habilidad</form.FormSheetTitle>
               <form.FormSheetDescription>
-                {isEditing
-                  ? "Actualiza los campos para editar la habilidad."
-                  : "Rellena los campos para agregar una nueva habilidad."}
+                Actualiza los campos para editar la habilidad.
               </form.FormSheetDescription>
             </form.FormSheetHeader>
           }
@@ -85,8 +72,8 @@ export function ResonatorSkillForm(props: ResonatorSkillFormProps) {
                   type="submit"
                   form={formId}
                 >
-                  {isEditing ? <PencilIcon /> : <PlusIcon />}
-                  {isEditing ? "Guardar cambios" : "Agregar habilidad"}
+                  <PlusIcon />
+                  Agregar habilidad
                 </form.SubmitButton>
               </form.AppForm>
             </form.FormSheetFooter>

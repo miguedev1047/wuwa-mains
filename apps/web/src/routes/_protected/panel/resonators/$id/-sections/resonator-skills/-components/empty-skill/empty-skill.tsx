@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/empty";
 import { UserIcon } from "lucide-react";
 
-export function ResonatorSkillEmpty() {
+export function EmptySkill() {
   return (
     <Empty className="w-full border border-dashed">
       <EmptyHeader>

@@ -1,34 +1,74 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  EditableBlock,
+  EditableBlockList,
+  EditableBlockItem,
+  EditableBlockHeader,
+  EditableBlockTitle,
+  EditableBlockMedia,
+  EditableBlockActions,
+  EditableBlockGroup,
+  EditableBlockBody,
+  EditableBlockActionItem,
+  EditableBlockDescription,
+} from "@/components/shared-ui/editable-block";
 import {
-  ResonatorSkillForm as AddResonatorSkill,
-  ResonatorSkillList,
+  DeleteSkill,
+  EditSkill,
+  EmptySkill,
+  AddSkill,
 } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-skills/-components";
+import { useGetResonator } from "@/routes/_protected/panel/resonators/$id/-hooks";
+import { TiptapPreview } from "@/components/shared-ui/editor";
 import { Separator } from "@/components/ui/separator";
+import { getResonatorSkillType } from "@/utils/general-utils";
+import { Badge } from "@/components/ui/badge";
 
 export function ResonatorSkills() {
+  const resonator = useGetResonator();
+  const skills = resonator.skills;
+
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <div className="flex-1 flex justify-between items-center">
-          <div className="space-y-2">
-            <CardTitle className="text-3xl font-bold">Habilidades</CardTitle>
-            <CardDescription>
-              Habilidades detalladas del resonador.
-            </CardDescription>
-          </div>
-          <AddResonatorSkill />
-        </div>
-      </CardHeader>
-      <Separator />
-      <CardContent>
-        <ResonatorSkillList />
-      </CardContent>
-    </Card>
+    <EditableBlock
+      title="Habilidades"
+      description="Enlistado de las habilidades del resonador."
+      addItem={<AddSkill />}
+    >
+      <EditableBlockList
+        emptyContent={<EmptySkill />}
+        getKey={(key) => key.id}
+        items={skills}
+      >
+        {(item) => (
+          <EditableBlockItem>
+            <EditableBlockGroup>
+              <EditableBlockMedia>
+                <img
+                  src={item.skill_image}
+                  alt={item.name}
+                  loading="lazy"
+                  className="size-full"
+                />
+              </EditableBlockMedia>
+              <EditableBlockHeader>
+                <EditableBlockTitle>{item.name}</EditableBlockTitle>
+                <Badge>{getResonatorSkillType(item.skill_type).label}</Badge>
+              </EditableBlockHeader>
+              <EditableBlockActions>
+                <EditableBlockActionItem asChild>
+                  <EditSkill {...item} />
+                </EditableBlockActionItem>
+                <EditableBlockActionItem asChild>
+                  <DeleteSkill {...item} />
+                </EditableBlockActionItem>
+              </EditableBlockActions>
+            </EditableBlockGroup>
+            <Separator />
+            <EditableBlockBody>
+              <TiptapPreview content={item.description} />
+            </EditableBlockBody>
+          </EditableBlockItem>
+        )}
+      </EditableBlockList>
+    </EditableBlock>
   );
 }

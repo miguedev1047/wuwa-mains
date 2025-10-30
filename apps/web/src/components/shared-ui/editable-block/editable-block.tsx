@@ -120,7 +120,7 @@ export function EditableBlockHeader({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  return <div className={cn("space-y-2", className)} {...props} />;
+  return <div className={cn("space-y-1", className)} {...props} />;
 }
 
 export function EditableBlockTitle({
