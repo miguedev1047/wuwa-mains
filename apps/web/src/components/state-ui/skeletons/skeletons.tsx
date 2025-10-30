@@ -68,7 +68,7 @@ export function EditorPreviewSkeleton({
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 p-4 rounded-(--radius) border border-border/50 bg-muted/30 animate-in fade-in",
+        "flex-1 flex flex-col gap-2 p-4 rounded-(--radius) border border-border/50 bg-muted/30 animate-in fade-in",
         className,
       )}
     >
