@@ -2,6 +2,7 @@ import {
   ResonatorSkills,
   ResonatorInfo,
   ResonatorBonus,
+  ResonatorChanResonance,
 } from "@/routes/_protected/panel/resonators/$id/-sections";
 import { ResonatorBreadcrumb } from "@/routes/_protected/panel/resonators/$id/-components";
 import { ErrorState } from "@/components/state-ui/error";
@@ -37,6 +38,7 @@ function RouteComponent() {
       <ResonatorInfo />
       <ResonatorSkills />
       <ResonatorBonus />
+      <ResonatorChanResonance />
     </main>
   );
 }
