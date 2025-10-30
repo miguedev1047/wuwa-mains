@@ -150,3 +150,47 @@ export const resonatorBonusZodSchema = z.object({
 });
 
 export type ResonatorBonusZodSchema = z.infer<typeof resonatorBonusZodSchema>;
+
+export const chainResonanceZodSchema = z.object({
+  id: z.string().optional(),
+
+  name: z
+    .string()
+    .min(2, { error: "El nombre debe tener al menos 2 caracteres." })
+    .max(50, { error: "El nombre no puede superar los 50 caracteres." })
+    .describe("Nombre de la cadena de resonancia."),
+
+  chain_resonance_image: z
+    .url({
+      error: "La URL de la imagen de la cadena de resonancia no es válida.",
+    })
+    .describe("Imagen representativa de la cadena de resonancia."),
+
+  description: z
+    .any()
+    .refine(
+      (val) => typeof val === "object" && val !== null && !Array.isArray(val),
+      { error: "La descripción es requerida." },
+    )
+    .refine((val) => Object.keys(val ?? {}).length > 0, {
+      error: "La descripción no puede estar vacía.",
+    })
+    .describe("Descripción detallada de la cadena de resonancia."),
+
+  resonator_id: z
+    .string()
+    .min(1, { error: "El ID del resonador debe ser un UUID válido." })
+    .describe(
+      "Identificador del resonador al que pertenece esta cadena de resonancia.",
+    ),
+
+  createdAt: z
+    .date()
+    .describe("Fecha de creación del registro en milisegundos."),
+
+  updatedAt: z
+    .date()
+    .describe("Última fecha de actualización del registro en milisegundos."),
+});
+
+export type ChainResonanceZodSchema = z.infer<typeof chainResonanceZodSchema>;
