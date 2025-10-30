@@ -8,8 +8,7 @@ export function DeleteChainResonance(data: ChainResonanceZodSchema) {
   return (
     <DestroyItem
       title="Eliminar cadena de resonancia"
-      description="¿Estas seguro que quieres eliminar esta cadena de resonancia? Esta acción es
-    irreversible."
+      description="¿Estas seguro que quieres eliminar esta cadena de resonancia? Esta acción esirreversible."
       onDelete={onDelete}
       disabled={isPending}
     />
