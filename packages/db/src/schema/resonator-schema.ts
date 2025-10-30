@@ -110,12 +110,39 @@ export const resonatorBonus = s.sqliteTable("resonator_bonus", {
     .notNull(),
 });
 
+export const chainResonance = s.sqliteTable("resonator_chain_resonance", {
+  id: s
+    .text("id")
+    .primaryKey()
+    .$default(() => crypto.randomUUID()),
+  resonator_id: s
+    .text("resonator_id")
+    .references(() => resonators.id, { onDelete: "cascade" })
+    .notNull(),
+  name: s.text("name").notNull(),
+  chain_resonance_image: s.text("chain_resonance_image").notNull(),
+  description: s
+    .text("description", { mode: "json" })
+    .notNull()
+    .$type<JSONContent>(),
+  createdAt: s
+    .integer("created_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .notNull(),
+  updatedAt: s
+    .integer("updated_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
 // RELATIONS - RESONATORS //
 
 export const resonatorRelations = relations(resonators, ({ many }) => ({
   combat_styles: many(combatStyles),
   skills: many(resonatorSkills),
   bonus: many(resonatorBonus),
+  resonance_chain: many(chainResonance),
 }));
 
 export const combatStylesRelations = relations(combatStyles, ({ one }) => ({
@@ -138,6 +165,13 @@ export const resonatorSkillsRelations = relations(
 export const resonatorBonusRelations = relations(resonatorBonus, ({ one }) => ({
   resonator: one(resonators, {
     fields: [resonatorBonus.resonator_id],
+    references: [resonators.id],
+  }),
+}));
+
+export const chainResonanceRelations = relations(chainResonance, ({ one }) => ({
+  resonator: one(resonators, {
+    fields: [chainResonance.resonator_id],
     references: [resonators.id],
   }),
 }));

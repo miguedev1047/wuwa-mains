@@ -3,6 +3,8 @@ export {
   resonatorRelations,
   resonatorSkillsRelations,
   resonatorBonusRelations,
+  chainResonanceRelations,
+  chainResonance,
   resonatorBonus,
   resonatorSkills,
   combatStyles,
