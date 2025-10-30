@@ -19,7 +19,7 @@ export function useDeleteChainResonance(data: ChainResonanceZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.chains.delete.mutationOptions({
+  const deleteMutationOpts = trpc.chains.delete.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);
@@ -32,15 +32,15 @@ export function useDeleteChainResonance(data: ChainResonanceZodSchema) {
       invalidateQuery();
     },
   });
-  const addMutation = useMutation(addMutationOpts);
+  const deleteMutation = useMutation(deleteMutationOpts);
 
-  const isPending = addMutation.isPending;
+  const isPending = deleteMutation.isPending;
 
   const onDelete = () => {
     if (!data.id) {
-      return toast.error("No se pudo obtener el ID del resonador.");
+      return toast.error("Cadena de resonancia no encontrada.");
     }
-    addMutation.mutate({ id: data.id });
+    deleteMutation.mutate({ id: data.id });
   };
 
   return { isPending, onDelete };
