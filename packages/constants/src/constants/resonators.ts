@@ -53,3 +53,54 @@ export const ORDER_ROSONATORS_SKILLS = [
   { value: "outro_skill", order: 5 },
   { value: "inherent_skill", order: [6, 7, 8] },
 ];
+
+export const SELECT_LEVELS = [
+  {
+    label: "Nivel 10",
+    value: "level_10",
+  },
+  {
+    label: "Nivel 20",
+    value: "level_20",
+  },
+  {
+    label: "Nivel 40",
+    value: "level_40",
+  },
+  {
+    label: "Nivel 50",
+    value: "level_50",
+  },
+  {
+    label: "Nivel 60",
+    value: "level_60",
+  },
+  {
+    label: "Nivel 70",
+    value: "level_70",
+  },
+  {
+    label: "Nivel 80",
+    value: "level_80",
+  },
+  {
+    label: "Nivel 90",
+    value: "level_90",
+  },
+  {
+    label: "Ninguno",
+    value: "none",
+  },
+];
+
+export const LEVELS_ENUM = [
+  "level_10",
+  "level_20",
+  "level_40",
+  "level_50",
+  "level_60",
+  "level_70",
+  "level_80",
+  "level_90",
+  "none",
+] as const;

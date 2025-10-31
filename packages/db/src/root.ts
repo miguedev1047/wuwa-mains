@@ -4,6 +4,8 @@ export {
   resonatorSkillsRelations,
   resonatorBonusRelations,
   chainResonanceRelations,
+  resonatorLevelsRelations,
+  resonatorLevels,
   chainResonance,
   resonatorBonus,
   resonatorSkills,

@@ -31,6 +31,7 @@ export const resonatorsRouter = {
           skills: true,
           bonus: true,
           resonance_chain: true,
+          level: true,
         },
       });
       return resonators;
@@ -54,6 +55,7 @@ export const resonatorsRouter = {
           skills: true,
           bonus: true,
           resonance_chain: true,
+          level: true,
         },
       });
 
