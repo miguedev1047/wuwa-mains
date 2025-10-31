@@ -1,18 +1,11 @@
-import { useResonatorBonusForm } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-bonus/-hooks";
+import type { ResonatorBonusZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
+import { useEditBonus } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-bonus/-hooks";
 import { SELECT_STAT_TYPE } from "@wuwa-mains/constants";
-import { PencilIcon, PlusIcon } from "lucide-react";
-import type { ResonatorBonusFormProps } from "@/routes/_protected/panel/resonators/-types";
+import { PencilIcon } from "lucide-react";
 
-export function ResonatorBonusForm(props: ResonatorBonusFormProps) {
-  const {
-    form,
-    dialogOpen,
-    formId,
-    isEditing,
-    isPending,
-    onSubmit,
-    setDialogOpen,
-  } = useResonatorBonusForm(props);
+export function EditBonus(data: ResonatorBonusZodSchema) {
+  const { dialogOpen, form, formId, isPending, onSubmit, setDialogOpen } =
+    useEditBonus(data);
 
   return (
     <form.AppForm>
@@ -20,16 +13,12 @@ export function ResonatorBonusForm(props: ResonatorBonusFormProps) {
         <form.FormSheetRoot
           open={dialogOpen}
           onOpenChange={setDialogOpen}
-          isEditing={isEditing}
+          isEditing
           renderHeader={
             <form.FormSheetHeader>
-              <form.FormSheetTitle>
-                {isEditing ? "Editar bonus" : "Nuevo bonus"}
-              </form.FormSheetTitle>
+              <form.FormSheetTitle>Editar bonus</form.FormSheetTitle>
               <form.FormSheetDescription>
-                {isEditing
-                  ? "Actualiza los campos para editar el bonus."
-                  : "Rellena los campos para agregar un nuevo bonus."}
+                Actualiza los campos para editar el bonus.
               </form.FormSheetDescription>
             </form.FormSheetHeader>
           }
@@ -67,8 +56,8 @@ export function ResonatorBonusForm(props: ResonatorBonusFormProps) {
                   type="submit"
                   form={formId}
                 >
-                  {isEditing ? <PencilIcon /> : <PlusIcon />}
-                  {isEditing ? "Guardar cambios" : "Agregar bonus"}
+                  <PencilIcon />
+                  Guardar cambios
                 </form.SubmitButton>
               </form.AppForm>
             </form.FormSheetFooter>

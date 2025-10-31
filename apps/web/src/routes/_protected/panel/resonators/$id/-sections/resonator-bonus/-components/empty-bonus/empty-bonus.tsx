@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/empty";
 import { GalleryVerticalEnd } from "lucide-react";
 
-export function ResonatorBonusEmpty() {
+export function EmptyBonus() {
   return (
     <Empty className="w-full border border-dashed">
       <EmptyHeader>

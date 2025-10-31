@@ -1,32 +1,67 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  EditableBlock,
+  EditableBlockList,
+  EditableBlockItem,
+  EditableBlockHeader,
+  EditableBlockTitle,
+  EditableBlockActions,
+  EditableBlockGroup,
+  EditableBlockActionItem,
+  EditableBlockDescription,
+  EditableBlockMedia,
+} from "@/components/shared-ui/editable-block";
 import {
-  ResonatorBonusForm,
-  ResonatorBonusList,
+  AddBonus,
+  DeleteBonus,
+  EditBonus,
+  EmptyBonus,
 } from "@/routes/_protected/panel/resonators/$id/-sections/resonator-bonus/-components";
-import { Separator } from "@/components/ui/separator";
+import { useGetResonator } from "@/routes/_protected/panel/resonators/$id/-hooks";
+import { getResonatorBonusType } from "@/utils/general-utils";
+import { StatIcon } from "@/components/icons-ui/stat-icon";
 
 export function ResonatorBonus() {
+  const resonator = useGetResonator();
+  const bonus = resonator.bonus;
+
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <div className="flex-1 flex justify-between items-center">
-          <div className="space-y-2">
-            <CardTitle className="text-3xl font-bold">Bonus</CardTitle>
-            <CardDescription>Bonus del resonador.</CardDescription>
-          </div>
-          <ResonatorBonusForm />
-        </div>
-      </CardHeader>
-      <Separator />
-      <CardContent>
-        <ResonatorBonusList />
-      </CardContent>
-    </Card>
+    <EditableBlock
+      title="Cadena de resonancia"
+      description="Cadena de resonancia del resonador."
+      addItem={<AddBonus />}
+    >
+      <EditableBlockList
+        emptyContent={<EmptyBonus />}
+        getKey={(key) => key.id}
+        items={bonus}
+        className="@[640px]:grid-cols-2"
+      >
+        {(item) => (
+          <EditableBlockItem>
+            <EditableBlockGroup>
+              <EditableBlockMedia>
+                <StatIcon stat={item.stat_type} />
+              </EditableBlockMedia>
+              <EditableBlockHeader>
+                <EditableBlockTitle>
+                  {getResonatorBonusType(item.stat_type).label}
+                </EditableBlockTitle>
+                <EditableBlockDescription>
+                  {item.bonus_value}0%
+                </EditableBlockDescription>
+              </EditableBlockHeader>
+              <EditableBlockActions>
+                <EditableBlockActionItem asChild>
+                  <EditBonus {...item} />
+                </EditableBlockActionItem>
+                <EditableBlockActionItem asChild>
+                  <DeleteBonus {...item} />
+                </EditableBlockActionItem>
+              </EditableBlockActions>
+            </EditableBlockGroup>
+          </EditableBlockItem>
+        )}
+      </EditableBlockList>
+    </EditableBlock>
   );
 }
