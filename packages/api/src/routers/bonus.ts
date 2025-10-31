@@ -1,50 +1,10 @@
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
-import { protectedProcedure, publicProcedure } from "../index";
+import { protectedProcedure } from "../index";
 import { idZodSchema, resonatorBonusZodSchema } from "@wuwa-mains/schemas";
 import { eq } from "drizzle-orm";
 import { resonatorBonus } from "@wuwa-mains/db/root";
 
 export const bonusRouter = {
-  get: publicProcedure.query(async ({ ctx }) => {
-    try {
-      const bonus = await ctx.db.query.resonatorBonus.findMany();
-      return bonus;
-    } catch (error) {
-      console.error("Error getting bonus:", error);
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message:
-          "Ha ocurrido un error al obtener los bonus de los resonadores.",
-        cause: error,
-      });
-    }
-  }),
-  unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
-    try {
-      const { id } = input;
-
-      const bonus = await ctx.db.query.resonatorBonus.findFirst({
-        where: eq(resonatorBonus.id, id),
-      });
-
-      if (!bonus) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Bonus de resonador no encontrado.",
-        });
-      }
-
-      return bonus;
-    } catch (error) {
-      console.error("Error getting material:", error);
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message:
-          "Ha ocurrido un error al obtener el bonus del resonador único.",
-        cause: error,
-      });
-    }
-  }),
   update: protectedProcedure
     .input(resonatorBonusZodSchema)
     .mutation(async ({ ctx, input }) => {

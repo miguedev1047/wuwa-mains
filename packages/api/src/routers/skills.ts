@@ -1,51 +1,11 @@
 import { resonatorSkills } from "@wuwa-mains/db/schema/resonator-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
-import { protectedProcedure, publicProcedure } from "../index";
+import { protectedProcedure } from "../index";
 import { resonatorSkillZodSchema } from "@wuwa-mains/schemas/zod/resonator-schema";
 import { idZodSchema } from "@wuwa-mains/schemas/zod/id-schema";
 import { eq } from "drizzle-orm";
 
 export const skillsRouter = {
-  get: publicProcedure.query(async ({ ctx }) => {
-    try {
-      const resonatorsSkills = await ctx.db.query.resonatorSkills.findMany();
-      return resonatorsSkills;
-    } catch (error) {
-      console.error("Error getting resonators skills:", error);
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message:
-          "Ha ocurrido un error al obtener las habilidades de los resonadores.",
-        cause: error,
-      });
-    }
-  }),
-  unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
-    try {
-      const { id } = input;
-
-      const resonatorSkill = await ctx.db.query.resonatorSkills.findFirst({
-        where: eq(resonatorSkills.id, id),
-      });
-
-      if (!resonatorSkill) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Habilidad del resonador no encontrada.",
-        });
-      }
-
-      return resonatorSkill;
-    } catch (error) {
-      console.error("Error getting unique resonator skill:", error);
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message:
-          "Ha ocurrido un error al obtener la habilidad del resonador único.",
-        cause: error,
-      });
-    }
-  }),
   update: protectedProcedure
     .input(resonatorSkillZodSchema)
     .mutation(async ({ ctx, input }) => {
