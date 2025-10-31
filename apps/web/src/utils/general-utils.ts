@@ -6,6 +6,7 @@ import {
   SELECT_ECHO_SET,
   SELECT_RESONATOR_SKILL_TYPE,
   SELECT_STAT_TYPE,
+  SELECT_LEVELS,
 } from "@wuwa-mains/constants";
 
 const UNDEFINED_GENERAL_OPTS = {
@@ -69,4 +70,10 @@ export function getResonatorBonusType(bonusType: string) {
   const BONUS_TYPE = SELECT_STAT_TYPE.find((type) => type.value === bonusType);
   if (!BONUS_TYPE) return UNDEFINED_GENERAL_OPTS;
   return BONUS_TYPE;
+}
+
+export function getResonatorLevel(levelType: string) {
+  const LEVEL = SELECT_LEVELS.find((level) => level.value === levelType);
+  if (!LEVEL) return UNDEFINED_GENERAL_OPTS;
+  return LEVEL;
 }
