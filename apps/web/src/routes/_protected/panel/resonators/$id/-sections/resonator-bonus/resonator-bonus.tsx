@@ -26,8 +26,8 @@ export function ResonatorBonus() {
 
   return (
     <EditableBlock
-      title="Cadena de resonancia"
-      description="Cadena de resonancia del resonador."
+      title="Bonus"
+      description="Listado de los bonus del resonador."
       addItem={<AddBonus />}
     >
       <EditableBlockList
