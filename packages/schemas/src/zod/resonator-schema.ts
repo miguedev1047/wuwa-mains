@@ -1,5 +1,6 @@
 import {
   ELEMENT_TYPE_ENUM,
+  LEVELS_ENUM,
   RESONATOR_SKILL_TYPE_ENUM,
   STARS_ENUM,
   STATS_TYPE_ENUM,
@@ -194,3 +195,43 @@ export const chainResonanceZodSchema = z.object({
 });
 
 export type ChainResonanceZodSchema = z.infer<typeof chainResonanceZodSchema>;
+
+export const levelsZodSchema = z.object({
+  id: z.string().optional(),
+
+  level: z
+    .enum(LEVELS_ENUM, {
+      error: "El tipo de nivel no es válido.",
+    })
+    .describe("Tipo de nivel (Nivel 10, Nivel 20, etc.)."),
+
+  hp: z
+    .number()
+    .min(0, { error: "La vida debe ser un número positivo." })
+    .describe("Cantidad de vida del nivel."),
+
+  atq: z
+    .number()
+    .min(0, { error: "El ataque debe ser un número positivo." })
+    .describe("Cantidad de ataque del nivel."),
+
+  def: z
+    .number()
+    .min(0, { error: "La defensa debe ser un número positivo." })
+    .describe("Cantidad de defensa del nivel."),
+
+  resonator_id: z
+    .string()
+    .min(1, { error: "El ID del resonador debe ser un UUID válido." })
+    .describe("Identificador del resonador al que pertenece este nivel."),
+
+  createdAt: z
+    .date()
+    .describe("Fecha de creación del registro en milisegundos."),
+
+  updatedAt: z
+    .date()
+    .describe("Última fecha de actualización del registro en milisegundos."),
+});
+
+export type LevelZodSchema = z.infer<typeof levelsZodSchema>;
