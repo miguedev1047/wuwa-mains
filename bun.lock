@@ -83,7 +83,7 @@
         "drizzle-kit": "^0.31.6",
         "jsdom": "^26.0.0",
         "typescript": "^5.7.2",
-        "vite": "npm:rolldown-vite@latest",
+        "vite": "^7.1.20",
         "web-vitals": "^5.0.3",
       },
     },
