@@ -5,9 +5,7 @@
   "scripts": {
     "build": "vite build",
     "serve": "vite preview",
-    "dev": "vite dev --port=3001",
-    "deploy": "vite build && wrangler deploy",
-    "cf-typegen": "wrangler types --env-interface Env"
+    "dev": "vite dev --port=3001"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",
