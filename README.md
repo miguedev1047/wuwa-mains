@@ -47,6 +47,13 @@ bun dev
 ```
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see your fullstack application.
+
+
+
+
+
+
+
 ## Deployment (Cloudflare Wrangler)
 - Web deploy: cd apps/web && bun deploy
 

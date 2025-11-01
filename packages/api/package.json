@@ -1,0 +1,34 @@
+{
+  "name": "@wuwa-mains/api",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@trpc/server": "catalog:",
+    "@trpc/client": "catalog:",
+    "superjson": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@wuwa-mains/auth": "workspace:*",
+    "@wuwa-mains/db": "workspace:*",
+    "@wuwa-mains/schemas": "workspace:*",
+    "@wuwa-mains/constants": "workspace:*"
+  }
+}
