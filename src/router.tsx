@@ -1,5 +1,7 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 import { Loader } from "@/components/loader";
+import { NotFound } from "@/components/shared-ui/not-found";
 import { TRPCQueryProvider } from "@/trpc/provider";
 import { trpc, queryClient } from "@/trpc/client";
 
@@ -9,12 +11,15 @@ export const getRouter = () => {
   const router = createTanStackRouter({
     routeTree,
     scrollRestoration: true,
+    defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
     context: { trpc, queryClient },
     defaultPendingComponent: () => <Loader />,
-    defaultNotFoundComponent: () => <div>Not Found</div>,
+    defaultNotFoundComponent: () => <NotFound />,
     Wrap: ({ children }) => <TRPCQueryProvider>{children}</TRPCQueryProvider>,
   });
+  setupRouterSsrQueryIntegration({ router, queryClient });
+
   return router;
 };
 
