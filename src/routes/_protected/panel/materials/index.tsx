@@ -1,0 +1,32 @@
+import { MaterialList } from "@panel/materials/-components/material-list";
+import { MaterialHeader } from "@panel/materials/-components/material-header";
+import { ErrorState } from "@/components/state-ui/error";
+import { createFileRoute } from "@tanstack/react-router";
+import { createStandardSchemaV1 } from "nuqs";
+import { searchParams } from "@panel/materials/-hooks/use-material-list";
+import { LoaderState } from "@/components/state-ui/loader";
+import { Suspense } from "react";
+import { ListSkeleton } from "@/components/state-ui/skeletons";
+
+export const Route = createFileRoute("/_protected/panel/materials/")({
+  pendingComponent: () => <LoaderState title="Cargando materiales..." />,
+  errorComponent: () => <ErrorState title="Error al cargar los materiales." />,
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(
+      context.trpc.materials.get.queryOptions(),
+    );
+  },
+  validateSearch: createStandardSchemaV1(searchParams, { partialOutput: true }),
+  component: RouteComponent,
+});
+
+function RouteComponent() {
+  return (
+    <main className="space-y-6 w-full min-h-[calc(100vh-10rem)]">
+      <MaterialHeader />
+      <Suspense fallback={<ListSkeleton />}>
+        <MaterialList />
+      </Suspense>
+    </main>
+  );
+}
