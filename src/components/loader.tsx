@@ -1,9 +1,32 @@
-import { Loader2 } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
+import { cn } from "@/lib/utils";
 
-export function Loader() {
+interface LoaderProps {
+  className?: string;
+  size?: "sm" | "default" | "lg";
+  fullHeight?: boolean;
+}
+
+const sizeVariants = {
+  sm: "size-4",
+  default: "size-6",
+  lg: "size-8",
+};
+
+export function Loader({
+  className,
+  size = "default",
+  fullHeight = true,
+}: LoaderProps) {
   return (
-    <div className="flex h-full items-center justify-center pt-8">
-      <Loader2 className="animate-spin" />
+    <div
+      className={cn(
+        "flex items-center justify-center pt-8",
+        fullHeight && "h-full",
+        className,
+      )}
+    >
+      <Spinner className={sizeVariants[size]} />
     </div>
   );
 }
