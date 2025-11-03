@@ -43,12 +43,12 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
     ],
   }),
-  component: RootDocument,
+  shellComponent: RootDocument,
 });
 
 function RootDocument() {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
