@@ -3,6 +3,7 @@ import { ErrorState } from "@/components/state-ui/error";
 import { LoaderState } from "@/components/state-ui/loader";
 
 export const Route = createFileRoute("/_protected/panel/my-resonators")({
+  ssr: "data-only",
   pendingComponent: () => (
     <LoaderState title="Cargando tus resonadores... Espera un momento..." />
   ),
