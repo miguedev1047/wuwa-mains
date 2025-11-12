@@ -6,8 +6,9 @@ import {
   WEAPON_MAIN_STAT_ENUM,
   WEAPON_TYPE_ENUM,
   STARS_ENUM,
+  LEVELS_ENUM,
 } from "@/data/constants";
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
 export const weapons = s.sqliteTable("weapons", {
   id: s
@@ -41,3 +42,37 @@ export const weapons = s.sqliteTable("weapons", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
 });
+
+export const weaponsLevels = s.sqliteTable("weapon_levels", {
+  id: s
+    .text("id")
+    .primaryKey()
+    .$default(() => crypto.randomUUID()),
+  weapon_id: s
+    .text("weapon_id")
+    .references(() => weapons.id, { onDelete: "cascade" })
+    .notNull(),
+  level: s.text("level", { enum: LEVELS_ENUM }).notNull(),
+  atk: s.integer({ mode: "number" }).default(0).notNull(),
+  stat_value: s.integer({ mode: "number" }).default(0).notNull(),
+  createdAt: s
+    .integer("created_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .notNull(),
+  updatedAt: s
+    .integer("updated_at", { mode: "timestamp_ms" })
+    .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const weaponRelations = relations(weapons, ({ many }) => ({
+  levels: many(weaponsLevels),
+}));
+
+export const weaponsLevelsRelations = relations(weaponsLevels, ({ one }) => ({
+  weapon: one(weapons, {
+    fields: [weaponsLevels.weapon_id],
+    references: [weapons.id],
+  }),
+}));
