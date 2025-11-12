@@ -1,9 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute('/_protected/panel/my-resonators/')({
+export const Route = createFileRoute("/_protected/panel/my-resonators/")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_protected/panel/my-resonators/"!</div>
+  return (
+    <div>
+      <Button asChild>
+        <Link to="/panel/my-resonators/create">Nuevo resonador</Link>
+      </Button>
+    </div>
+  );
 }
