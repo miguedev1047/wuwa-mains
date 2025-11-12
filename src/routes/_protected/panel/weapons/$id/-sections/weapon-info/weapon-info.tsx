@@ -1,22 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SquareBox } from "@/components/shared-ui/square-box";
 import { EditWeaponForm } from "@panel/weapons/-components/weapon-form";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { TiptapPreview } from "@/components/shared-ui/editor";
 import { StarsList } from "@/components/shared-ui/stars-list";
-import { getMainStat } from "@/utils/general-utils";
-import { useTRPC } from "@/trpc/root";
+import { getWeaponMainStat } from "@/utils/general-utils";
+import { useGetWeapon } from "@panel/weapons/$id/-hooks/use-get-weapon";
 
 export function WeaponInfo() {
-  const { id } = useParams({ from: "/_protected/panel/weapons/$id/" });
-  const trpc = useTRPC();
-  const weaponQueryOpts = trpc.weapons.unique.queryOptions({ id });
-  const { data: weapon } = useSuspenseQuery(weaponQueryOpts);
-
-  const { label: mainStat } = getMainStat(weapon.main_stat);
+  const weapon = useGetWeapon();
+  const { label: mainStat } = getWeaponMainStat(weapon.main_stat);
 
   return (
     <Card>
@@ -29,7 +23,7 @@ export function WeaponInfo() {
             </div>
             <figure className="w-full h-[720px] grid place-items-center">
               <img
-                className="mx-auto size-[280px]"
+                className="mx-auto size-[280px] bg-input rounded-(--radius)"
                 loading="lazy"
                 src={weapon.avatar_image}
                 alt={weapon.name}
