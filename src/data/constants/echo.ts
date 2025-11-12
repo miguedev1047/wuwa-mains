@@ -31,20 +31,20 @@ export const ECHO_COST_ENUM = [
 
 export const SELECT_ECHO_CLASS = [
   {
-    label: "Overlord",
-    value: "overlord",
+    label: "Clase Tsunami",
+    value: "tsunami_class",
   },
   {
-    label: "Calamidad",
-    value: "calamity",
+    label: "Clase Marea",
+    value: "tide_class",
   },
   {
-    label: "Elite",
-    value: "elite",
+    label: "Clase Elite",
+    value: "elite_class",
   },
   {
-    label: "Comun",
-    value: "common",
+    label: "Clase Comun",
+    value: "common_class",
   },
   {
     label: "Sin clase",
@@ -53,10 +53,10 @@ export const SELECT_ECHO_CLASS = [
 ];
 
 export const ECHO_CLASS_ENUM = [
-  "overlord",
-  "calamity",
-  "elite",
-  "common",
+  "tsunami_class",
+  "tide_class",
+  "elite_class",
+  "common_class",
   "none",
 ] as const;
 
@@ -265,3 +265,181 @@ export const ECHO_SETS_ENUM = [
   "thread_of_severed_fate",
   "none",
 ] as const;
+
+export const SELECT_ECHOES_MAIN_STATS: Record<
+  string,
+  { label: string; value: string; levels: number[] }[]
+> = {
+  cost_4: [
+    {
+      label: "Prob. critica",
+      value: "crit_rate",
+      levels: [4.4, 7.9, 11.4, 15, 18.5, 22],
+    },
+    {
+      label: "Daño critico",
+      value: "crit_dmg",
+      levels: [8.8, 15.8, 22.9, 29.9, 37, 44],
+    },
+    {
+      label: "Vida",
+      value: "hp",
+      levels: [6.6, 11.9, 17.2, 22.4, 27.7, 33],
+    },
+    {
+      label: "Ataque",
+      value: "atk",
+      levels: [6.6, 11.9, 17.2, 22.4, 27.7, 33],
+    },
+    {
+      label: "Defensa",
+      value: "def",
+      levels: [8.4, 15, 21.7, 28.8, 35.1, 41.8],
+    },
+    {
+      label: "Bono de curación",
+      value: "healing_bonus",
+      levels: [5.3, 9.5, 13.7, 18, 22.2, 26.4],
+    },
+  ],
+  cost_3: [
+    {
+      label: "Vida",
+      value: "hp",
+      levels: [6, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Ataque",
+      value: "atk",
+      levels: [6, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Defensa",
+      value: "def",
+      levels: [7.6, 13.7, 19.8, 25.8, 31.9, 38],
+    },
+    {
+      label: "Recarga de energía",
+      value: "energy_regen",
+      levels: [6.4, 11.5, 16.6, 21.8, 26.9, 32],
+    },
+    {
+      label: "Bono espectro",
+      value: "spectro_bonus",
+      levels: [6, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Bono aero",
+      value: "aero_bonus",
+      levels: [6, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Bono glacio",
+      value: "glacio_bonus",
+      levels: [6, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Bono fusión",
+      value: "fusion_bonus",
+      levels: [6.0, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Bono destrucción",
+      value: "havoc_bonus",
+      levels: [6.0, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+    {
+      label: "Bono electro",
+      value: "electro_bonus",
+      levels: [6.0, 10.8, 15.6, 20.4, 25.2, 30],
+    },
+  ],
+  cost_1: [
+    {
+      label: "Ataque",
+      value: "atk",
+      levels: [4.6, 8.2, 11.9, 15.5, 19.2, 22.8],
+    },
+    {
+      label: "Vida",
+      value: "hp",
+      levels: [3.6, 6.5, 9.4, 12.2, 15.1, 18],
+    },
+    {
+      label: "Defensa",
+      value: "def",
+      levels: [3.6, 6.5, 9.4, 12.2, 15.1, 18],
+    },
+  ],
+};
+
+export const SELECT_ECHOES_SUBSTATS = [
+  {
+    label: "Prob. critica",
+    value: "crit_rate",
+  },
+  {
+    label: "Daño critico",
+    value: "crit_dmg",
+  },
+  {
+    label: "Recarga de energía",
+    value: "energy_regen",
+  },
+  {
+    label: "Bono de ataque basico",
+    value: "basic_atk_bonus",
+  },
+  {
+    label: "Bono de ataque cargado",
+    value: "heavy_atk_bonus",
+  },
+  {
+    label: "Bono de habilidad de resonancia",
+    value: "skill_bonus",
+  },
+  {
+    label: "Bono de liberacion",
+    value: "liberation_bonus",
+  },
+  {
+    label: "Vida plana",
+    value: "hp",
+  },
+  {
+    label: "Vida porcentual",
+    value: "hp_percent",
+  },
+  {
+    label: "Ataque plano",
+    value: "atk",
+  },
+  {
+    label: "Ataque porcentual",
+    value: "atk_percent",
+  },
+  {
+    label: "Defensa plana",
+    value: "def",
+  },
+  {
+    label: "Defensa porcentual",
+    value: "def_percent",
+  },
+];
+
+export const SELECT_SUBSTATS_OPTIONS: Record<string, number[]> = {
+  crit_rate: [6.3, 6.0, 0.9, 7.5, 8.1, 9.3, 9.9, 10.5],
+  crit_dmg: [12.6, 13.8, 15, 18.2, 17.4, 18.6, 19.8, 21],
+  energy_regen: [6.8, 7.6, 8.4, 9.2, 10, 10.8, 11.6, 12.4],
+  basic_atk_bonus: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  heavy_atk_bonus: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  skill_bonus: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  liberation_bonus: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  hp: [320, 360, 390, 430, 470, 510, 540, 580],
+  hp_percent: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  atk: [30, 40, 50, 60],
+  atk_percent: [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6],
+  def: [40, 50, 60, 70],
+  def_percent: [8.1, 9.0, 10.0, 10.9, 11.8, 12.8, 13.8, 14.7],
+};
