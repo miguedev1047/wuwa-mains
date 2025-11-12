@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 dist
 dist-ssr
+/src/services/db/migrations
 *.local
 count.txt
 .env
