@@ -36,7 +36,7 @@ export function getElementTypeName(elementType: string) {
   return ELEMENT_TYPE;
 }
 
-export function getMainStat(mainStat: string) {
+export function getWeaponMainStat(mainStat: string) {
   const MAIN_STAT = SELECT_WEAPON_MAIN_STATS.find(
     (stat) => stat.value === mainStat,
   );
