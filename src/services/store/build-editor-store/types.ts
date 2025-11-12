@@ -1,6 +1,6 @@
 import type { ResonatorFullDatabaseSchema } from "@/services/db/types/resonator-types";
 import type { WeaponFullDatabaseSchema } from "@/services/db/types/weapon-types";
-import type { EchoesDatabaseSchema } from "@/services/db/types/echoes-types";
+import type { EchoesFullDatabaseSchema } from "@/services/db/types/echoes-types";
 
 // ==================== TYPES ====================
 
@@ -39,7 +39,7 @@ export interface WeaponConfig {
 }
 
 export interface EchoConfig {
-  selected: EchoesDatabaseSchema | null;
+  selected: EchoesFullDatabaseSchema | null;
   level: number;
   mainStat: string;
   sonataEffect: string;
@@ -108,4 +108,10 @@ export interface BuildEditorStore {
 
   isOpenWeaponDialog: boolean;
   toggleWeaponDialog: (isOpen: boolean) => void;
+
+  isOpenEchoDialog: {
+    isActive: boolean;
+    activeSlot: number | null;
+  };
+  toggleEchoDialog: (isOpen: boolean, activeSlot: number | null) => void;
 }
