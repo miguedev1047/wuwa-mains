@@ -36,20 +36,20 @@ export const WEAPON_TYPE_ENUM = [
 
 export const SELECT_WEAPON_MAIN_STATS = [
   {
-    label: "Ataque Porcentual",
-    value: "attack",
+    label: "Ataque",
+    value: "atk",
   },
   {
-    label: "Defensa Porcentual",
-    value: "defense",
+    label: "Defensa",
+    value: "def",
+  },
+  {
+    label: "Vida",
+    value: "hp",
   },
   {
     label: "Recarga de energía",
     value: "energy_recharge",
-  },
-  {
-    label: "Vida Porcentual",
-    value: "health",
   },
   {
     label: "Prob. critica",
@@ -66,10 +66,10 @@ export const SELECT_WEAPON_MAIN_STATS = [
 ];
 
 export const WEAPON_MAIN_STAT_ENUM = [
-  "attack",
-  "defense",
+  "hp",
+  "def",
+  "atk",
   "energy_recharge",
-  "health",
   "crit_rate",
   "crit_dmg",
   "none",
