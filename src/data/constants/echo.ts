@@ -358,12 +358,12 @@ export const SELECT_ECHOES_MAIN_STATS: Record<
     {
       label: "Ataque",
       value: "atk",
-      levels: [4.6, 8.2, 11.9, 15.5, 19.2, 22.8],
+      levels: [3.6, 6.5, 9.4, 12.2, 15.1, 18],
     },
     {
       label: "Vida",
       value: "hp",
-      levels: [3.6, 6.5, 9.4, 12.2, 15.1, 18],
+      levels: [4.6, 8.2, 11.9, 15.5, 19.2, 22.8],
     },
     {
       label: "Defensa",

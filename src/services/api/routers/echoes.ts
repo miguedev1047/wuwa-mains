@@ -22,6 +22,21 @@ export const echoesRouter = {
       });
     }
   }),
+  full: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const echoes = await ctx.db.query.echoes.findMany({
+        with: { sets: true },
+      });
+      return echoes;
+    } catch (error) {
+      console.error("Error getting echoes:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Ha ocurrido un error al obtener los ecos.",
+        cause: error,
+      });
+    }
+  }),
   unique: publicProcedure.input(idZodSchema).query(async ({ ctx, input }) => {
     try {
       const { id } = input;
