@@ -3,10 +3,14 @@ import {
   combatStyles,
 } from "@/services/db/schema/resonator-schema";
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
+import { eq } from "drizzle-orm";
 import { protectedProcedure, publicProcedure } from "@/services/api";
 import { resonatorZodSchema, idZodSchema } from "@/schemas/zod";
 import { combatStylesTransformOpts } from "@/services/api/helpers/option-transform";
-import { eq } from "drizzle-orm";
+import { resonatorLevelsRouter } from "@/services/api/routers/levels";
+import { resonatorChainResonanceRouter } from "@/services/api/routers/chain";
+import { resonatorSkillsRouter } from "@/services/api/routers/skills";
+import { resonatorBonusRouter } from "@/services/api/routers/bonus";
 
 export const resonatorsRouter = {
   get: publicProcedure.query(async ({ ctx }) => {
@@ -30,7 +34,7 @@ export const resonatorsRouter = {
           skills: true,
           bonus: true,
           resonance_chain: true,
-          level: true,
+          level: { orderBy: (level, { asc }) => [asc(level.level)] },
         },
       });
       return resonators;
@@ -189,4 +193,8 @@ export const resonatorsRouter = {
         });
       }
     }),
+  levels: resonatorLevelsRouter,
+  resonator_chains: resonatorChainResonanceRouter,
+  skills: resonatorSkillsRouter,
+  bonus: resonatorBonusRouter,
 } satisfies TRPCRouterRecord;

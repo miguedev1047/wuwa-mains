@@ -1,10 +1,10 @@
 import { TRPCError, type TRPCRouterRecord } from "@trpc/server";
 import { protectedProcedure } from "@/services/api";
 import { chainResonanceZodSchema, idZodSchema } from "@/schemas/zod";
-import { chainResonance } from "@/services/db/schema/resonator-schema";
+import { resonatorChainResonance } from "@/services/db/schema/resonator-schema";
 import { eq } from "drizzle-orm";
 
-export const chainResonanceRouter = {
+export const resonatorChainResonanceRouter = {
   update: protectedProcedure
     .input(chainResonanceZodSchema)
     .mutation(async ({ ctx, input }) => {
@@ -19,9 +19,9 @@ export const chainResonanceRouter = {
         }
 
         await ctx.db
-          .update(chainResonance)
+          .update(resonatorChainResonance)
           .set(chainResonanceData)
-          .where(eq(chainResonance.id, id));
+          .where(eq(resonatorChainResonance.id, id));
 
         return {
           code: "SUCCESS",
@@ -43,7 +43,7 @@ export const chainResonanceRouter = {
       try {
         const { ...chainResonanceData } = input;
 
-        await ctx.db.insert(chainResonance).values(chainResonanceData);
+        await ctx.db.insert(resonatorChainResonance).values(chainResonanceData);
 
         return {
           code: "SUCCESS",
@@ -64,7 +64,9 @@ export const chainResonanceRouter = {
       try {
         const { id } = input;
 
-        await ctx.db.delete(chainResonance).where(eq(chainResonance.id, id));
+        await ctx.db
+          .delete(resonatorChainResonance)
+          .where(eq(resonatorChainResonance.id, id));
 
         return {
           code: "SUCCESS",

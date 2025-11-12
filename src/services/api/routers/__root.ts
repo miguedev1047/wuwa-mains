@@ -1,22 +1,16 @@
-import { router } from "../index";
-import { bonusRouter } from "./bonus";
-import { chainResonanceRouter } from "./chain";
-import { echoesRouter } from "./echoes";
-import { levelsRouter } from "./levels";
-import { materialsRouter } from "./materials";
-import { resonatorsRouter } from "./resonators";
-import { skillsRouter } from "./skills";
-import { weaponsRouter } from "./weapons";
+import { router } from "@/services/api";
+import { echoesRouter } from "@/services/api/routers/echoes";
+import { materialsRouter } from "@/services/api/routers/materials";
+import { resonatorsRouter } from "@/services/api/routers/resonators";
+import { weaponsRouter } from "@/services/api/routers/weapons";
+import { myResonatorsRouter } from "@/services/api/routers/my-resonators";
 
 export const appRouter = router({
   resonators: resonatorsRouter,
   weapons: weaponsRouter,
-  skills: skillsRouter,
   materials: materialsRouter,
   echoes: echoesRouter,
-  bonus: bonusRouter,
-  chains: chainResonanceRouter,
-  levels: levelsRouter,
+  myResonators: myResonatorsRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -4,7 +4,7 @@ import { protectedProcedure } from "@/services/api";
 import { resonatorSkillZodSchema, idZodSchema } from "@/schemas/zod";
 import { eq } from "drizzle-orm";
 
-export const skillsRouter = {
+export const resonatorSkillsRouter = {
   update: protectedProcedure
     .input(resonatorSkillZodSchema)
     .mutation(async ({ ctx, input }) => {

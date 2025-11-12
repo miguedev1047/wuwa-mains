@@ -3,11 +3,27 @@ import { protectedProcedure, publicProcedure } from "@/services/api";
 import { weapons } from "@/services/db/schema/weapon-schema";
 import { weaponZodSchema, idZodSchema } from "@/schemas/zod";
 import { eq } from "drizzle-orm";
+import { weaponLevelsRouter } from "@/services/api/routers/levels";
 
 export const weaponsRouter = {
   get: publicProcedure.query(async ({ ctx }) => {
     try {
       const weapons = await ctx.db.query.weapons.findMany();
+      return weapons;
+    } catch (error) {
+      console.error("Error getting weapons:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Ha ocurrido un error al obtener las armas.",
+        cause: error,
+      });
+    }
+  }),
+  full: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const weapons = await ctx.db.query.weapons.findMany({
+        with: { levels: true },
+      });
       return weapons;
     } catch (error) {
       console.error("Error getting weapons:", error);
@@ -24,6 +40,7 @@ export const weaponsRouter = {
 
       const weapon = await ctx.db.query.weapons.findFirst({
         where: eq(weapons.id, id),
+        with: { levels: true },
       });
 
       if (!weapon) {
@@ -121,4 +138,5 @@ export const weaponsRouter = {
         });
       }
     }),
+  levels: weaponLevelsRouter,
 } satisfies TRPCRouterRecord;
