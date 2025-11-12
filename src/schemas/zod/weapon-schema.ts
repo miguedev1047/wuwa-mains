@@ -2,6 +2,7 @@ import {
   WEAPON_MAIN_STAT_ENUM,
   WEAPON_TYPE_ENUM,
   STARS_ENUM,
+  LEVELS_ENUM,
 } from "@/data/constants";
 import { z } from "zod";
 
@@ -81,3 +82,38 @@ export const weaponZodSchema = z.object({
 });
 
 export type WeaponZodSchema = z.infer<typeof weaponZodSchema>;
+
+export const weaponLevelsZodSchema = z.object({
+  id: z.string().optional(),
+
+  level: z
+    .enum(LEVELS_ENUM, {
+      error: "El tipo de nivel no es válido.",
+    })
+    .describe("Tipo de nivel (Nivel 10, Nivel 20, etc.)."),
+
+  atk: z
+    .number()
+    .min(0, { error: "El ataque debe ser un número positivo." })
+    .describe("Cantidad de ataque del nivel."),
+
+  stat_value: z
+    .number()
+    .min(0, { error: "La estadistica debe ser un número positivo." })
+    .describe("Cantidad de defensa del nivel."),
+
+  weapon_id: z
+    .string()
+    .min(1, { error: "El ID del arma debe ser un UUID válido." })
+    .describe("Identificador del arma al que pertenece este nivel."),
+
+  createdAt: z
+    .date()
+    .describe("Fecha de creación del registro en milisegundos."),
+
+  updatedAt: z
+    .date()
+    .describe("Última fecha de actualización del registro en milisegundos."),
+});
+
+export type WeaponLevelZodSchema = z.infer<typeof weaponLevelsZodSchema>;
