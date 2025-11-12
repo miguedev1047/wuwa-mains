@@ -8,7 +8,6 @@ import type { JSONContent } from "@tiptap/core";
 import { TextStyleKit } from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { cn } from "@/lib/utils";
-import { EditorPreviewSkeleton } from "@/components/state-ui/skeletons";
 
 interface TiptapPreviewProps {
   content: JSONContent;
