@@ -52,7 +52,7 @@ export const SELECT_STAT_TYPE = [
     value: "basic_atk_bonus",
   },
   {
-    label: "Bono de ataque pesado",
+    label: "Bono de ataque cargado",
     value: "heavy_atk_bonus",
   },
   {
@@ -62,6 +62,10 @@ export const SELECT_STAT_TYPE = [
   {
     label: "Bono de liberación de resonancia",
     value: "liberation_bonus",
+  },
+  {
+    label: "Recarga de energía",
+    value: "energy_regen",
   },
   {
     label: "Ninguno",
