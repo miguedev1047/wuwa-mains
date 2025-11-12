@@ -196,7 +196,7 @@ export const chainResonanceZodSchema = z.object({
 
 export type ChainResonanceZodSchema = z.infer<typeof chainResonanceZodSchema>;
 
-export const levelsZodSchema = z.object({
+export const resonatorLevelsZodSchema = z.object({
   id: z.string().optional(),
 
   level: z
@@ -234,4 +234,4 @@ export const levelsZodSchema = z.object({
     .describe("Última fecha de actualización del registro en milisegundos."),
 });
 
-export type LevelZodSchema = z.infer<typeof levelsZodSchema>;
+export type ResonatorLevelZodSchema = z.infer<typeof resonatorLevelsZodSchema>;
