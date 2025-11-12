@@ -20,7 +20,7 @@ export function useDeleteSkill(data: ResonatorSkillZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const deleteMutationOpts = trpc.chains.delete.mutationOptions({
+  const deleteMutationOpts = trpc.resonators.skills.delete.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

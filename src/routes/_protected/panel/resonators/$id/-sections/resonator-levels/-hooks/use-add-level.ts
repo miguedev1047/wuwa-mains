@@ -1,6 +1,6 @@
 import {
-  levelsZodSchema,
-  type LevelZodSchema,
+  resonatorLevelsZodSchema,
+  type ResonatorLevelZodSchema,
 } from "@/schemas/zod/resonator-schema";
 
 import { useTRPC } from "@/trpc/root";
@@ -23,7 +23,7 @@ export function useAddLevel() {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
 
-  const DEFAULT_VALUES: LevelZodSchema = {
+  const DEFAULT_VALUES: ResonatorLevelZodSchema = {
     atq: 0,
     def: 0,
     hp: 0,
@@ -40,7 +40,7 @@ export function useAddLevel() {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.levels.add.mutationOptions({
+  const addMutationOpts = trpc.resonators.levels.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);
@@ -59,7 +59,7 @@ export function useAddLevel() {
 
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
-    validators: { onSubmit: levelsZodSchema },
+    validators: { onSubmit: resonatorLevelsZodSchema },
     onSubmit: ({ value }) => {
       addMutation.mutate({ ...value });
     },

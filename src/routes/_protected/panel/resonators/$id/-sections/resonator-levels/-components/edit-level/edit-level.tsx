@@ -1,10 +1,10 @@
-import type { LevelZodSchema } from "@/schemas/zod/resonator-schema";
+import type { ResonatorLevelZodSchema } from "@/schemas/zod/resonator-schema";
 
 import { useEditLevel } from "@panel/resonators/$id/-sections/resonator-levels/-hooks/use-edit-level";
 import { SELECT_LEVELS } from "@/data/constants";
 import { PencilIcon } from "lucide-react";
 
-export function EditLevel(data: LevelZodSchema) {
+export function EditLevel(data: ResonatorLevelZodSchema) {
   const { formId, onSubmit, dialogOpen, setDialogOpen, form, isPending } =
     useEditLevel(data);
 

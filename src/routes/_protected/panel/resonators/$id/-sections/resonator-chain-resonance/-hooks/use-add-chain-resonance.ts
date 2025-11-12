@@ -38,7 +38,7 @@ export function useAddChainResonance() {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.chains.add.mutationOptions({
+  const addMutationOpts = trpc.resonators.resonator_chains.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

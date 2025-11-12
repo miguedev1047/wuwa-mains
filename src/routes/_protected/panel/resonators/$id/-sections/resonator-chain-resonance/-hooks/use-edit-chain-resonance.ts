@@ -39,21 +39,22 @@ export function useEditChainResonance(data: ChainResonanceZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.chains.update.mutationOptions({
-    onSuccess: (ctx) => {
-      const { message } = ctx;
-      toast.success(message);
-    },
-    onError: (ctx) => {
-      const { message } = ctx;
-      toast.error(message);
-    },
-    onSettled: () => {
-      invalidateQuery();
-      setDialogOpen(false);
-      formClear();
-    },
-  });
+  const addMutationOpts =
+    trpc.resonators.resonator_chains.update.mutationOptions({
+      onSuccess: (ctx) => {
+        const { message } = ctx;
+        toast.success(message);
+      },
+      onError: (ctx) => {
+        const { message } = ctx;
+        toast.error(message);
+      },
+      onSettled: () => {
+        invalidateQuery();
+        setDialogOpen(false);
+        formClear();
+      },
+    });
   const addMutation = useMutation(addMutationOpts);
 
   const form = useAppForm({

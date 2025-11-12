@@ -1,11 +1,11 @@
-import type { LevelZodSchema } from "@/schemas/zod/resonator-schema";
+import type { ResonatorLevelZodSchema } from "@/schemas/zod";
 
 import { useTRPC } from "@/trpc/root";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { toast } from "sonner";
 
-export function useDeleteLevel(data: LevelZodSchema) {
+export function useDeleteLevel(data: ResonatorLevelZodSchema) {
   const { id: resonatorId } = useParams({
     from: "/_protected/panel/resonators/$id/",
   });
@@ -20,7 +20,7 @@ export function useDeleteLevel(data: LevelZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const deleteMutationOpts = trpc.levels.delete.mutationOptions({
+  const deleteMutationOpts = trpc.resonators.levels.delete.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

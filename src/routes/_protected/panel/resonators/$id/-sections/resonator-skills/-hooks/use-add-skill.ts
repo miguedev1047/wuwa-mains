@@ -40,7 +40,7 @@ export function useAddSkill() {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.skills.add.mutationOptions({
+  const addMutationOpts = trpc.resonators.skills.add.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

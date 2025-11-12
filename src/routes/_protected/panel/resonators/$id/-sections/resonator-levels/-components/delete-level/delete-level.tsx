@@ -1,9 +1,9 @@
-import type { LevelZodSchema } from "@/schemas/zod/resonator-schema";
+import type { ResonatorLevelZodSchema } from "@/schemas/zod/resonator-schema";
 
 import { useDeleteLevel } from "@panel/resonators/$id/-sections/resonator-levels/-hooks/use-delete-level";
 import { DestroyItem } from "@/components/shared-ui/destroy-item";
 
-export function DeleteLevel(data: LevelZodSchema) {
+export function DeleteLevel(data: ResonatorLevelZodSchema) {
   const { isPending, onDelete } = useDeleteLevel(data);
 
   return (

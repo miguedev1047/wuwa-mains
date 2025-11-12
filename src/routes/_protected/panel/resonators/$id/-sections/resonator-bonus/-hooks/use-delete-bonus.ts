@@ -20,7 +20,7 @@ export function useDeleteBonus(data: ResonatorBonusZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const deleteMutationOpts = trpc.chains.delete.mutationOptions({
+  const deleteMutationOpts = trpc.resonators.bonus.delete.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

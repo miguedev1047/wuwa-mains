@@ -1,6 +1,6 @@
 import {
-  levelsZodSchema,
-  type LevelZodSchema,
+  resonatorLevelsZodSchema,
+  type ResonatorLevelZodSchema,
 } from "@/schemas/zod/resonator-schema";
 
 import { useAppForm } from "@/hooks/use-form";
@@ -10,7 +10,7 @@ import { useParams } from "@tanstack/react-router";
 import { useId, useState } from "react";
 import { toast } from "sonner";
 
-export function useEditLevel(data: LevelZodSchema) {
+export function useEditLevel(data: ResonatorLevelZodSchema) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const id = useId();
@@ -23,7 +23,7 @@ export function useEditLevel(data: LevelZodSchema) {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
 
-  const DEFAULT_VALUES: LevelZodSchema = {
+  const DEFAULT_VALUES: ResonatorLevelZodSchema = {
     id: data.id,
     atq: data.atq,
     def: data.def,
@@ -41,7 +41,7 @@ export function useEditLevel(data: LevelZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const updateMutationOpts = trpc.levels.update.mutationOptions({
+  const updateMutationOpts = trpc.resonators.levels.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);
@@ -60,7 +60,7 @@ export function useEditLevel(data: LevelZodSchema) {
 
   const form = useAppForm({
     defaultValues: DEFAULT_VALUES,
-    validators: { onSubmit: levelsZodSchema },
+    validators: { onSubmit: resonatorLevelsZodSchema },
     onSubmit: ({ value }) => {
       updateMutation.mutate({ ...value });
     },

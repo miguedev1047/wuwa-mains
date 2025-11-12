@@ -19,19 +19,20 @@ export function useDeleteChainResonance(data: ChainResonanceZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const deleteMutationOpts = trpc.chains.delete.mutationOptions({
-    onSuccess: (ctx) => {
-      const { message } = ctx;
-      toast.success(message);
-    },
-    onError: (ctx) => {
-      const { message } = ctx;
-      toast.error(message);
-    },
-    onSettled: () => {
-      invalidateQuery();
-    },
-  });
+  const deleteMutationOpts =
+    trpc.resonators.resonator_chains.delete.mutationOptions({
+      onSuccess: (ctx) => {
+        const { message } = ctx;
+        toast.success(message);
+      },
+      onError: (ctx) => {
+        const { message } = ctx;
+        toast.error(message);
+      },
+      onSettled: () => {
+        invalidateQuery();
+      },
+    });
   const deleteMutation = useMutation(deleteMutationOpts);
 
   const isPending = deleteMutation.isPending;

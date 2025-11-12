@@ -39,7 +39,7 @@ export function useAddBonus() {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const addMutationOpts = trpc.bonus.update.mutationOptions({
+  const addMutationOpts = trpc.resonators.bonus.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

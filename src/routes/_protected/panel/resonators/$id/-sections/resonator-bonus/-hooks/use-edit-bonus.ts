@@ -39,7 +39,7 @@ export function useEditBonus(data: ResonatorBonusZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const updateMutationOpts = trpc.bonus.update.mutationOptions({
+  const updateMutationOpts = trpc.resonators.bonus.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);

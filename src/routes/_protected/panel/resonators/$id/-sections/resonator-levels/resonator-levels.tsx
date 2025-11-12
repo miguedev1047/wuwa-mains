@@ -12,13 +12,15 @@ import { AddLevel } from "@panel/resonators/$id/-sections/resonator-levels/-comp
 import { EmptyLevel } from "@panel/resonators/$id/-sections/resonator-levels/-components/empty-level";
 import { EditLevel } from "@panel/resonators/$id/-sections/resonator-levels/-components/edit-level";
 import { DeleteLevel } from "@panel/resonators/$id/-sections/resonator-levels/-components/delete-level";
+import { Badge } from "@/components/ui/badge";
+import { StatIcon } from "@/components/icons-ui/stat-icon";
 import { useGetResonator } from "@panel/resonators/$id/-hooks/use-get-resonator";
 import { getResonatorLevel } from "@/utils/general-utils";
-import { Badge } from "@/components/ui/badge";
+import { sortResonatorLevels } from "@/helpers/sort-items";
 
 export function ResonatorLevels() {
   const resonator = useGetResonator();
-  const levels = resonator.level;
+  const levels = sortResonatorLevels(resonator.level);
 
   return (
     <EditableBlock
@@ -39,9 +41,24 @@ export function ResonatorLevels() {
                   {getResonatorLevel(item.level).label}
                 </EditableBlockTitle>
                 <div className="flex items-center gap-2">
-                  <Badge>Vida: {item.hp}</Badge>
-                  <Badge>Ataque: {item.atq}</Badge>
-                  <Badge>Defensa: {item.def}</Badge>
+                  <Badge asChild>
+                    <div className="flex items-center gap-2">
+                      <StatIcon stat="hp" />
+                      <span>Vida: {item.hp}</span>
+                    </div>
+                  </Badge>
+                  <Badge asChild>
+                    <div className="flex items-center gap-2">
+                      <StatIcon stat="atk" />
+                      <span>Ataque: {item.atq}</span>
+                    </div>
+                  </Badge>
+                  <Badge asChild>
+                    <div className="flex items-center gap-2">
+                      <StatIcon stat="def" />
+                      <span>Defensa: {item.def}</span>
+                    </div>
+                  </Badge>
                 </div>
               </EditableBlockHeader>
               <EditableBlockActions>

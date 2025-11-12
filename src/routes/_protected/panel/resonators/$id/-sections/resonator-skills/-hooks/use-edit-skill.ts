@@ -41,7 +41,7 @@ export function useEditSkill(data: ResonatorSkillZodSchema) {
     queryClient.invalidateQueries({ queryKey: queryKey });
   };
 
-  const updateMutationOpts = trpc.skills.update.mutationOptions({
+  const updateMutationOpts = trpc.resonators.skills.update.mutationOptions({
     onSuccess: (ctx) => {
       const { message } = ctx;
       toast.success(message);
