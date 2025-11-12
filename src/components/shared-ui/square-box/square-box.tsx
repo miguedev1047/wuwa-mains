@@ -7,10 +7,13 @@ const squareBoxVariants = cva(
     variants: {
       size: {
         default: "size-20",
+        xs: "size-12",
         sm: "size-16",
         lg: "size-24",
         xl: "size-32",
-        full: "size-full",
+        "2xl": "size-40",
+        "3xl": "size-48",
+        full: "size-full aspect-square",
       },
       defaultVariants: {
         size: "default",
