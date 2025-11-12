@@ -12,6 +12,11 @@ import { BuildWeaponSelector } from "@/components/shared-ui/build/weapon/build-w
 import { BuildWeaponEmpty } from "@/components/shared-ui/build/weapon/build-weapon-empty";
 
 export function BuildWeaponInformation() {
+  const resonatorSelected = useStore(
+    useBuildEditorStore,
+    (state) => state.resonatorConfig?.selected,
+  );
+
   const weaponSelected = useStore(
     useBuildEditorStore,
     (state) => state.weaponConfig?.selected,
@@ -21,12 +26,16 @@ export function BuildWeaponInformation() {
     state.isSameResonatorAndWeapon(),
   );
 
+  if (!resonatorSelected) {
+    return <BuildWeaponEmpty isSelectedResonator />;
+  }
+
   if (!weaponSelected) {
     return <BuildWeaponEmpty />;
   }
 
   if (!isSameWeaponType) {
-    return <BuildWeaponEmpty isCompatibleWeapon />;
+    return <BuildWeaponEmpty isNotCompatibleWeapon />;
   }
 
   return (

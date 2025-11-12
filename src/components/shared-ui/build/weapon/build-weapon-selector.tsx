@@ -73,7 +73,7 @@ export function BuildWeaponSelector() {
           </div>
           <ScrollArea className="w-full h-[600px]">
             <Suspense fallback={<WeaponListSkeleton />}>
-              <BuildResonatorSelectorList />
+              <BuildWeaponSelectorList />
             </Suspense>
           </ScrollArea>
         </div>
@@ -102,7 +102,7 @@ export function BuildWeaponSelectorEmpty() {
   );
 }
 
-export function BuildResonatorSelectorList() {
+export function BuildWeaponSelectorList() {
   const weapons = useGetWeapons();
 
   if (!weapons.length) {
