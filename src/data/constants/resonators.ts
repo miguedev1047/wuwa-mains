@@ -58,44 +58,59 @@ export const SELECT_LEVELS = [
   {
     label: "Nivel 10",
     value: "level_10",
+    level: 10,
   },
   {
     label: "Nivel 20",
     value: "level_20",
+    level: 20,
+  },
+  {
+    label: "Nivel 30",
+    value: "level_30",
+    level: 30,
   },
   {
     label: "Nivel 40",
     value: "level_40",
+    level: 40,
   },
   {
     label: "Nivel 50",
     value: "level_50",
+    level: 50,
   },
   {
     label: "Nivel 60",
     value: "level_60",
+    level: 60,
   },
   {
     label: "Nivel 70",
     value: "level_70",
+    level: 70,
   },
   {
     label: "Nivel 80",
     value: "level_80",
+    level: 80,
   },
   {
     label: "Nivel 90",
     value: "level_90",
+    level: 90,
   },
   {
     label: "Ninguno",
     value: "none",
+    level: 0,
   },
 ];
 
 export const LEVELS_ENUM = [
   "level_10",
   "level_20",
+  "level_30",
   "level_40",
   "level_50",
   "level_60",
