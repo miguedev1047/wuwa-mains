@@ -236,5 +236,9 @@ export const useBuildEditorStore = create<BuildEditorStore>()(
 
     isOpenWeaponDialog: false,
     toggleWeaponDialog: (isOpen) => set({ isOpenWeaponDialog: isOpen }),
+
+    isOpenEchoDialog: { activeSlot: null, isActive: false },
+    toggleEchoDialog: (isOpen, activeSlot) =>
+      set({ isOpenEchoDialog: { isActive: isOpen, activeSlot } }),
   })),
 );
