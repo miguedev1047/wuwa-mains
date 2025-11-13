@@ -1,5 +1,17 @@
-export function formatDecimalAsPercent(value: number): string {
+import { PERCENTAGE_STATS } from "@/data/constants";
+
+export function formatStatValue(
+  stat: string | undefined,
+  value: number,
+): string {
+  if (!stat) return "0%";
+
   if (!Number.isFinite(value)) return String(value);
-  const isDecimal = value % 1 !== 0;
-  return isDecimal ? `${value}%` : `${value}`;
+
+  if (PERCENTAGE_STATS.has(stat)) {
+    return `${value}%`;
+  }
+
+  // Para valores absolutos (hp, atk, def), solo el número
+  return String(value);
 }
