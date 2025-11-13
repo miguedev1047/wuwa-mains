@@ -96,3 +96,22 @@ export const STATS_TYPE_ENUM = [
   "liberation_bonus",
   "none",
 ] as const;
+
+export const PERCENTAGE_STATS: Set<string> = new Set([
+  "crit_rate",
+  "crit_dmg",
+  "hp_percent",
+  "atk_percent",
+  "def_percent",
+  "healing_bonus",
+  "aero_bonus",
+  "spectro_bonus",
+  "glacio_bonus",
+  "fusion_bonus",
+  "havoc_bonus",
+  "energy_regen",
+  "basic_atk_bonus",
+  "heavy_atk_bonus",
+  "skill_bonus",
+  "liberation_bonus",
+]);
